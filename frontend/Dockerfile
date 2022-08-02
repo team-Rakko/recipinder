@@ -1,7 +1,7 @@
 FROM node:16.16.0-alpine 
-WORKDIR app
+WORKDIR frontend
 COPY ./package*.json ./
 RUN npm ci
-COPY ./ /app/
+COPY ./ /frontend/
 EXPOSE 3000
 EXPOSE 3001

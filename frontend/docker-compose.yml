@@ -6,9 +6,9 @@ services:
       dockerfile: Dockerfile
     container_name: front
     volumes:
-      - ./:/app
-      - /app/node_modules
-    working_dir: /app 
+      - ./:/frontend
+      - /frontend/node_modules
+    working_dir: /frontend
     command:
       sh -c 'npm run dev'
     environment:
