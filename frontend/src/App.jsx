@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Test from "./components/Test.jsx";
 import Home from "./components/Home.jsx";
+import './App.css'
 function App() {
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(
