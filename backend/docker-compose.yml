@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/go/src/app
+    ports:
+      - 8080:8080
+    environment:
+      DB_USER: 'recipinder'
+      DB_PASS: 'recipinder_pass'
+      DB_IP: 'mysql'
+      DB_PORT: '3306'
+      DB_NAME: 'recipinder'
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'admin'
+      MYSQL_DATABASE: 'recipinder'
+      MYSQL_USER: 'recipinder'
+      MYSQL_PASSWORD: 'recipinder_pass'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./db/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./db/mysql/init:/docker-entrypoint-initdb.d
