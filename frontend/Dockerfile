@@ -1,4 +1,4 @@
-FROM node:16.16.0-alpine 
+FROM node:16.16.0
 WORKDIR frontend
 COPY ./package*.json ./
 RUN npm ci
