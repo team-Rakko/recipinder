@@ -8,13 +8,43 @@ USE `recipinder`;
 
 CREATE TABLE IF NOT EXISTS `users` (
     `id` VARCHAR(64) NOT NULL COMMENT 'ユーザID',
+    `name` VARCHAR(64) NOT NULL COMMENT '名前',
     `created_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) COMMENT '作成時',
     `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6) COMMENT '更新時',
     PRIMARY KEY (`id`),
     INDEX `idx_auth_token` (`id` ASC)
     );
 
+CREATE TABLE IF NOT EXISTS `recipinder`.`recipis` (
+    `id` VARCHAR(64) NOT NULL COMMENT 'レシピID',
+    `recipe_name` VARCHAR(64) NOT NULL COMMENT 'レシピネーム',
+    `description` VARCHAR(512) NOT NULL COMMENT 'レシピ概要',
+    `url` VARCHAR(128) NOT NULL COMMENT '料理画像URL',
+    `place` integer NOT NULL COMMENT '値段',
+    `ingredients` VARCHAR(64) NOT NULL COMMENT '材料ID',
+    `tag` integer NOT NULL COMMENT 'tagid',
+    `evaluation` integer NOT NULL COMMENT '評価',
+    `created_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) COMMENT '作成時',
+    `updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6) COMMENT '更新時',
+    PRIMARY KEY (`id`)
+    );
+
+CREATE TABLE IF NOT EXISTS `recipinder`.`recipe_user` (
+    `id` VARCHAR(64) NOT NULL COMMENT 'ID',
+    `recipe_id` VARCHAR(64) NOT NULL COMMENT 'レシピID',
+    `user_id` VARCHAR(64) NOT NULL COMMENT 'ユーザID',
+    `like` integer NOT NULL COMMENT 'like判定',
+    PRIMARY KEY (`id`)
+    );
+
+CREATE TABLE IF NOT EXISTS `recipinder`.`review` (
+    `id` VARCHAR(64) NOT NULL COMMENT 'ID',
+    `recipe_id` VARCHAR(64) NOT NULL COMMENT 'レシピID',
+    `evaluation` integer NOT NULL COMMENT '評価',
+    PRIMARY KEY (`id`)
+    );
+
 -- user
-INSERT INTO users (id) VALUES ("1");
-INSERT INTO users (id) VALUES ("2");
+INSERT INTO users (id,name) VALUES ("1","rakko1");
+INSERT INTO users (id,name) VALUES ("2","rakko2");
 

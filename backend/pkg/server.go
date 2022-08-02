@@ -3,6 +3,7 @@ package pkg
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"recipinder/pkg/controller"
 )
 
 var (
@@ -15,6 +16,6 @@ func init() {
 	Server.Use(cors.Default())
 
 	//ユーザ関連
-	//Server.POST("/sign/up", controller.SignUp())
+	Server.POST("/sign/up", controller.SignUp())
 
 }
