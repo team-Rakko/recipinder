@@ -1,14 +1,27 @@
 import { auth } from '../firebase';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LoginButton from './LoginButton';
 import "../assets/css/Login.css";
+import { UserContext } from "../App"
 
 function Login() {
+    const {userInfo, setUserInfo} = useContext(UserContext);
+    const navigate = useNavigate();
+
     useEffect(() => {
 
         // 認証チェック処理
         auth.onAuthStateChanged(user => {
-            console.log('認証チェック', user);
+            if (user) {
+                const uid = user.uid;
+                const userName = user.userName;
+                const userInfo = {userName: userName, uid: uid};
+
+                setUserInfo(userInfo); // ユーザー情報を保持
+                navigate('/'); // 画面遷移
+
+            }
         });
 
     },[auth]);
