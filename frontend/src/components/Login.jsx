@@ -3,7 +3,8 @@ import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginButton from './LoginButton';
 import "../assets/css/Login.css";
-import { UserContext } from "../App"
+import { UserContext } from "../App";
+import { signUp } from "../lib/api";
 
 function Login() {
     const {userInfo, setUserInfo} = useContext(UserContext);
@@ -18,6 +19,7 @@ function Login() {
                 const userName = user.userName;
                 const userInfo = {userName: userName, uid: uid};
 
+                
                 setUserInfo(userInfo); // ユーザー情報を保持
                 navigate('/swipe'); // 画面遷移
 
