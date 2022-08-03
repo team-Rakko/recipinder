@@ -14,13 +14,14 @@ export const Sidebar = () => {
         setStyles('left-10 opacity-0');
       }}
     >
-      <div className="bg-white grid sm:grid-cols-1 grid-cols-2 absolute sm:gap-10 gap-10 sm:py-10 py-3 sm:px-3 px-10 place-items-center justify-items-center rounded-lg top-5 left-5 z-10">
+      <div className="bg-white grid sm:grid-cols-1 grid-cols-3 absolute sm:gap-10 gap-10 sm:py-10 py-3 sm:px-3 px-10 place-items-center justify-items-center rounded-lg top-5 left-5 z-20">
         <img
           src={Search}
           alt=""
           className="w-8 h-8"
           onMouseEnter={() => {
             setHover(true);
+            console.log('hover');
             setTimeout(() => {
               setStyles(
                 'left-0 sm:left-20 sm:top-5 top-20 sm:w-3/4 w-full opacity-100'

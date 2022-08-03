@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useRef } from 'react';
 import TinderCard from 'react-tinder-card';
+import { ConfirmationModal } from './ConfirmationModal';
 import '../assets/css/swipe.css';
 
 const db = [
@@ -15,12 +16,13 @@ const db = [
   },
   {
     id: 2,
-    name: '奉天層の肉巻き',
+    name: 'ほうれん草の肉巻き',
     url: './img/vegetable.jpg',
   },
 ];
 
 function Swipe() {
+  const [modal, setModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState();
   const currentIndexRef = useRef(currentIndex);
@@ -74,45 +76,63 @@ function Swipe() {
   return (
     <div>
       <div className="back-gradation absolute top-0 right-0"></div>
-      <div className="shadow-2xl pb-10 absolute bg-white swiper-container rounded-md">
-        <div className="grid grid-cols-1 relative my-40">
-          <div className="">
-            {db.map((character, index) => (
-              <TinderCard
-                ref={childRefs[index]}
-                key={character.name}
-                onSwipe={(dir) => swiped(dir, character.name, index)}
-                onCardLeftScreen={() => outOfFrame(character.name, index)}
-              >
-                <div className="absolute swiper">
-                  <img
-                    src={character.url}
-                    alt=""
-                    className="w-80 h-60 rounded-md"
-                  />
-                  <p className="text-center text-2xl bg-white">
-                    {character.name}
-                  </p>
-                </div>
-              </TinderCard>
-            ))}
+      {modal ? (
+        <ConfirmationModal setModal={setModal} />
+      ) : (
+        <div className="shadow-2xl pb-10 absolute bg-white swiper-container rounded-md">
+          {modal && <ConfirmationModal />}
+          <div className="grid grid-cols-1 relative sm:my-40 my-24">
+            <div className="">
+              {db.map((character, index) => (
+                <TinderCard
+                  ref={childRefs[index]}
+                  key={character.name}
+                  onSwipe={(dir) => swiped(dir, character.name, index)}
+                  onCardLeftScreen={() => {
+                    outOfFrame(character.name, index);
+                  }}
+                >
+                  <div className="absolute swiper">
+                    <div className="flex justify-center">
+                      <img
+                        src={character.url}
+                        alt=""
+                        className="w-80 h-60 rounded-md flex justify-center"
+                      />
+                    </div>
+
+                    <p className="text-center text-2xl bg-white rounded-md">
+                      {character.name}
+                    </p>
+                  </div>
+                </TinderCard>
+              ))}
+            </div>
+          </div>
+          <div className=" grid lg:grid-cols-3 grid-cols-1 md:mx-20 mx-5 gap-5">
+            <button
+              className="shadow-lg sm:py-5 py-2 px-10"
+              onClick={() => swipe('left')}
+            >
+              作らない
+            </button>
+            <button
+              className="shadow-lg lg:py-5 py-2"
+              onClick={() => swipe('right')}
+            >
+              リストに追加する
+            </button>
+            <button
+              className="shadow-lg lg:py-5 py-2"
+              onClick={() => {
+                setModal(true);
+              }}
+            >
+              作る
+            </button>
           </div>
         </div>
-        <div className=" grid grid-cols-3 mx-20 gap-10">
-          <button
-            className="shadow-lg py-5 px-10"
-            onClick={() => swipe('left')}
-          >
-            作らない
-          </button>
-          <button className="shadow-lg py-5" onClick={() => goBack()}>
-            リストに追加する
-          </button>
-          <button className="shadow-lg py-5" onClick={() => swipe('right')}>
-            作る
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

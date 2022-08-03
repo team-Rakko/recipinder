@@ -6,7 +6,7 @@ import vege from '../../assets/images/vege.svg';
 export const Menu = ({ hover }) => {
   return (
     <div
-      className={`text-black bg-white absolute p-10 top-5 rounded-lg req-animation ${hover} z-0`}
+      className={`text-black bg-white absolute p-10 top-5 rounded-lg req-animation ${hover} z-10`}
     >
       <div>
         <div className="grid sm:grid-cols-4 grid-cols-1">
