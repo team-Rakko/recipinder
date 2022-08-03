@@ -9,11 +9,12 @@ import (
 	"recipinder/pkg/view"
 )
 
-func SignUp() gin.HandlerFunc {
+func RecipeList() gin.HandlerFunc {
 	return func(c *gin.Context) {
-
-		var sur dto.SignUpRequest
-		if err := c.BindJSON(&sur); err != nil {
+		log.Println("test")
+		var rlr dto.RecipeListRequest
+		if err := c.BindJSON(&rlr); err != nil {
+			log.Println(err)
 			view.ReturnErrorResponse(
 				c,
 				http.StatusBadRequest,
@@ -23,8 +24,8 @@ func SignUp() gin.HandlerFunc {
 			return
 		}
 
-		client := dao.MakeSignUpClient()
-		_, err := client.Request(sur)
+		client := dao.MakeReadRecipeClient()
+		response, err := client.Request(rlr)
 		if err != nil {
 			log.Println(err)
 			view.ReturnErrorResponse(
@@ -36,6 +37,6 @@ func SignUp() gin.HandlerFunc {
 			return
 		}
 
-		c.JSON(http.StatusOK, view.ReturnSignResponse(sur.Id))
+		c.JSON(http.StatusOK, response)
 	}
 }
