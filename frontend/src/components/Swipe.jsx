@@ -1,22 +1,40 @@
-import React, { useState, useMemo, useRef } from 'react';
-import TinderCard from 'react-tinder-card';
-import '../assets/css/swipe.css';
+import React, { useState, useMemo, useRef } from "react";
+import TinderCard from "react-tinder-card";
+import "../assets/css/swipe.css";
+import { recipeList } from "../lib/api.jsx";
 
+const data2 = {
+  tag: 0,
+  id: 11,
+};
+const sendRecipeList = async (data) => {
+  try {
+    const res = await recipeList(data);
+    console.log(res);
+    if (res.status === 200) {
+      console.log("test");
+    } else {
+      console.log("test2");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 const db = [
   {
     id: 0,
-    name: '豚の生姜焼き',
-    url: './img/meat.jpg',
+    name: "豚の生姜焼き",
+    url: "./img/meat.jpg",
   },
   {
     id: 1,
-    name: 'シャケのムニエル',
-    url: './img/fish.jpg',
+    name: "シャケのムニエル",
+    url: "./img/fish.jpg",
   },
   {
     id: 2,
-    name: '奉天層の肉巻き',
-    url: './img/vegetable.jpg',
+    name: "奉天層の肉巻き",
+    url: "./img/vegetable.jpg",
   },
 ];
 
@@ -95,13 +113,13 @@ function Swipe() {
           </div>
         </div>
         <div className=" grid grid-cols-3 mx-10 gap-10">
-          <button className="shadow-lg py-5" onClick={() => swipe('left')}>
+          <button className="shadow-lg py-5" onClick={() => swipe("left")}>
             作らない
           </button>
           <button className="shadow-lg py-5" onClick={() => goBack()}>
             リストに追加する
           </button>
-          <button className="shadow-lg py-5" onClick={() => swipe('right')}>
+          <button className="shadow-lg py-5" onClick={() => swipe("right")}>
             作る
           </button>
         </div>
