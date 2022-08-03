@@ -6,6 +6,7 @@
 }
 .swiper-container {
   position: absolute;
+  width: 70vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -16,7 +17,7 @@
   background: -webkit-linear-gradient(-45deg, red, orange);
   background: -moz-linear-gradient(-45deg, red, orange);
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-size: 150% 150%;
 
   animation-name: gradation;
@@ -32,5 +33,36 @@
   }
   100% {
     background-position: 100% 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .swiper {
+    position: absolute;
+    width: 70vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+  }
+  .swiper-container {
+    position: absolute;
+    width: 90vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+  }
+  .back-gradation {
+    background: linear-gradient(135deg, red, orange);
+    background: -webkit-linear-gradient(-45deg, red, orange);
+    background: -moz-linear-gradient(-45deg, red, orange);
+    width: 100vw;
+    min-height: 100vh;
+    background-size: 150% 150%;
+
+    animation-name: gradation;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
   }
 }
