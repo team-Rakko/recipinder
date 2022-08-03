@@ -45,10 +45,10 @@ function Message() {
     return (
         <div>
 
-            <div className="absolute top-0 left-0 half-screen h-full w-1/2 z-10" onMouseEnter={()=>hover()} onMouseLeave={()=>leave()}>
+            <div className="absolute top-0 left-0 half-screen h-full w-1/2 z-0" onMouseEnter={()=>hover()} onMouseLeave={()=>leave()}>
             </div>
 
-            <div className="absolute top-1/4 left-1/2 bg-white bg-opacity-60 z-10 p-14 rounded-lg message" style={hoverStyle}>
+            <div className="absolute top-1/4 left-1/2 bg-white bg-opacity-60 z-10 p-16 rounded-lg message" style={hoverStyle}>
                 <div className="text-4xl flex justify-center">
                     <div className="text-center text-gray-800 leading-relaxed tracking-wide">
                         お金と健康を両立したい<br/>
