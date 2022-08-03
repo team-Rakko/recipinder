@@ -5,8 +5,9 @@ import { signUp, recipeList, recipeDetail, list } from "../lib/api.jsx";
 import axios from "axios";
 
 function Test() {
+  // function Test() {
   const data1 = {
-    id: "laadsfad",
+    id: "laadsfadaa",
     name: "keita",
   };
   const sendSignUp = async (data) => {
@@ -60,8 +61,8 @@ function Test() {
   };
 
   const data4 = {
-    user_id: "aihsdfi", //ユーザ　ID
-    recipe_id: 5, //レシピID
+    user_id: "aihsdfi",
+    recipe_id: 5,
   };
   const sendList = async (data) => {
     try {
