@@ -6,6 +6,11 @@
     
 }
 
+.loginButton {
+    position:  absolute; 
+    top: 450px;
+    left: 150px;
+}
 
 .message {
     width: 50vw;
