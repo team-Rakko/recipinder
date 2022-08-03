@@ -6,12 +6,6 @@
     
 }
 
-.loginButton {
-    position:  absolute; 
-    top: 400px;
-    left: 150px;
-    z-index: 10;
-}
 
 .message {
     width: 50vw;

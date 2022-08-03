@@ -28,7 +28,7 @@ function Login() {
 
     return (
       <div className="background">
-        <div className="loginButton absolute top-96 left-30 z-10">
+        <div className="absolute top-96 left-30 z-10">
             <LoginButton />
         </div>
 
