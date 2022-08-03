@@ -1,5 +1,12 @@
 package view
 
-func ReturnSignResponse() string {
-	return "ok"
+type SignResponse struct {
+	Id string `json:"id"`
+}
+
+func ReturnSignResponse(id string) SignResponse {
+	body := SignResponse{
+		Id: id,
+	}
+	return body
 }

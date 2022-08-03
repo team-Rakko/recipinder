@@ -18,4 +18,11 @@ func init() {
 	//ユーザ関連
 	Server.POST("/sign/up", controller.SignUp())
 
+	//レシピ関連
+	Server.POST("/recipe/list", controller.RecipeList())
+	//Server.POST("/recipe/user/list", controller.SignUp())
+	//
+	////レビュー関連
+	//Server.POST("/review", controller.SignUp())
+
 }
