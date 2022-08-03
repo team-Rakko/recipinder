@@ -3,8 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Test from "./components/Test.jsx";
 import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
-import Swipe from "./components/Swipe.jsx";
-import "./App.css";
+import './App.css'
 function App() {
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(
@@ -14,7 +13,6 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="test" element={<Test />}></Route>
         <Route path="login" element={<Login />}></Route>
-        <Route path="swipe" element={<Swipe />}></Route>
       </Routes>
     </BrowserRouter>
   );
