@@ -14,7 +14,7 @@ function SignInButton() {
 
     return (
         <div>
-            <img src={googleButton} height ="60" width="250" onClick={signInGoogle} />
+            <img src={googleButton} height ="80" width="300" onClick={signInGoogle} />
         </div>
     );
 }

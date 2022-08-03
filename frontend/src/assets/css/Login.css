@@ -1,18 +1,27 @@
 .background {
     width: 100vw;
     height: 100vh;
-    background-image : url("../images/loginBackImg.jpg");
+    background-image : url("../images/loginBack.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
     
 }
 
-.loginButton {
-    position:  absolute; 
-    top: 450px;
-    left: 150px;
+
+
+.title {
+    font-size: 12vw;
+    font-family: "HiraMinProN-W6";
 }
 
+
 .message {
-    width: 50vw;
-    height: 50vh;
+    width: 60vw;
+    height: 25vw;
+    font-size: 3vw;
+}
+
+@media (max-width: 430px) {
+    .message {width: 100%;}
 }
