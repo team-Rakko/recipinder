@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `recipinder`.`recipe_user` (
     `id` VARCHAR(64) NOT NULL COMMENT 'ID',
     `recipe_id` VARCHAR(64) NOT NULL COMMENT 'レシピID',
     `user_id` VARCHAR(64) NOT NULL COMMENT 'ユーザID',
-    `like` integer NOT NULL COMMENT 'like判定',
+    `like` integer COMMENT 'like判定',
     PRIMARY KEY (`id`)
     );
 
