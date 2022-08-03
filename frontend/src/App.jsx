@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import * as ReactDOM from 'react-dom';
 import Test from './components/Test.jsx';
 import Home from './components/Home.jsx';
 import Login from './components/Login.jsx';
