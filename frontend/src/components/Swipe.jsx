@@ -73,10 +73,10 @@ function Swipe() {
 
   return (
     <div>
-      {/* <div className="back-gradation z-10 absolute"></div> */}
-      <div className=" hadow-2xl m-40 pb-10 z-20">
-        <div className="grid grid-cols-1 relative my-60">
-          <div className="border-4 border-black">
+      <div className="back-gradation absolute top-0 right-0"></div>
+      <div className="shadow-2xl pb-10 absolute bg-white swiper-container rounded-md">
+        <div className="grid grid-cols-1 relative my-40">
+          <div className="">
             {db.map((character, index) => (
               <TinderCard
                 ref={childRefs[index]}
@@ -85,7 +85,11 @@ function Swipe() {
                 onCardLeftScreen={() => outOfFrame(character.name, index)}
               >
                 <div className="absolute swiper">
-                  <img src={character.url} alt="" className="w-60 h-60" />
+                  <img
+                    src={character.url}
+                    alt=""
+                    className="w-80 h-60 rounded-md"
+                  />
                   <p className="text-center text-2xl bg-white">
                     {character.name}
                   </p>
@@ -94,8 +98,11 @@ function Swipe() {
             ))}
           </div>
         </div>
-        <div className=" grid grid-cols-3 mx-10 gap-10">
-          <button className="shadow-lg py-5" onClick={() => swipe('left')}>
+        <div className=" grid grid-cols-3 mx-20 gap-10">
+          <button
+            className="shadow-lg py-5 px-10"
+            onClick={() => swipe('left')}
+          >
             作らない
           </button>
           <button className="shadow-lg py-5" onClick={() => goBack()}>
@@ -109,13 +116,4 @@ function Swipe() {
     </div>
   );
 }
-// {lastDirection ? (
-//   <h2 key={lastDirection} className="infoText">
-//     You swiped {lastDirection}
-//   </h2>
-// ) : (
-//   <h2 className="infoText">
-//     Swipe a card or press a button to get Restore Card button visible!
-//   </h2>
-// )}
 export default Swipe;
