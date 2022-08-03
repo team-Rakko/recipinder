@@ -27,7 +27,7 @@ function Login() {
                 navigate("/swipe"); // 画面遷移
             }
             else {
-                //alert("ログイン失敗しました");
+                alert("ログイン失敗しました");
             }
           
         }
@@ -42,8 +42,8 @@ function Login() {
 
         setUserInfo(userInfo); // ユーザー情報を保持
 
-        // confirmSignIn(userInfo);
-        // navigate("/swipe"); // 画面遷移
+        confirmSignIn(userInfo);
+        navigate("/swipe"); // 画面遷移
       }
     });
   }, [auth]);
