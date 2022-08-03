@@ -34,7 +34,7 @@ func (info *readRecipe) Request(recipeInfo dto.RecipeListRequest) ([]dto.RecipeL
 	if err != nil {
 		log.Println(err)
 		if err == sql.ErrNoRows {
-			return rw, errors.New("not exist work data")
+			return rw, errors.New("not exist data")
 		}
 	}
 	defer rows.Close()
@@ -77,7 +77,7 @@ func (info *readRecipeDetail) Request(recipeInfo dto.RecipeDetailRequest) (dto.R
 	row := Conn.QueryRow(SelectRecipeDetail, recipeInfo.Id)
 	if err := row.Scan(&recipe.RecipeName, &recipe.Description, &recipe.Url, &recipe.Place, &recipe.Ingredients, &recipe.Evaluation); err != nil {
 		if err == sql.ErrNoRows {
-			return rd, errors.New("mail address is not true")
+			return rd, errors.New("")
 		}
 		log.Println(err)
 	}

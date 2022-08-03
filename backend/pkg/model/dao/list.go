@@ -35,7 +35,7 @@ func (info *addMyList) Request(listInfo dto.ListAddRequest) error {
 	_, err = stmt.Exec(uu, listInfo.RecipeId, listInfo.UserId)
 	if err != nil {
 		log.Println(err)
-		return errors.New("Unable to insert work data")
+		return errors.New("Unable to insert data")
 	}
 
 	return err

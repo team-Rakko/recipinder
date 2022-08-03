@@ -24,8 +24,6 @@ func init() {
 
 	//リスト関連
 	Server.POST("/list", controller.ListMyRecipe())
-
 	//レビュー関連
-	//Server.POST("/review", controller.SignUp())
-
+	Server.POST("/review", controller.RecipeReview())
 }

@@ -1,0 +1,30 @@
+.swiper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.back-gradation {
+  background: linear-gradient(135deg, red, orange);
+  background: -webkit-linear-gradient(-45deg, red, orange);
+  background: -moz-linear-gradient(-45deg, red, orange);
+  width: 100vw;
+  height: 100vh;
+  background-size: 150% 150%;
+
+  animation-name: gradation;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes gradation {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}

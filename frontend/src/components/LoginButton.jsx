@@ -6,7 +6,10 @@ function SignInButton() {
   
     //googleのログイン認証popupを表示
     const signInGoogle = () => {
-        signInWithPopup(auth, provider);
+        signInWithPopup(auth, provider)
+        .catch((e) => {
+            alert("ユーザー認証が行われませんでした。");
+        });
     }
 
     return (
