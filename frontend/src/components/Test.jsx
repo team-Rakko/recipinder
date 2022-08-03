@@ -1,13 +1,13 @@
 import { useState } from "react";
 import reactLogo from "../assets/react.svg";
 import "../App.css";
-import { signUp, recipeList, recipeDetail, list } from "../api/api.jsx";
+import { signUp, recipeList, recipeDetail, list } from "../lib/api.jsx";
 import axios from "axios";
 
 function Test() {
   // function Test() {
   const data1 = {
-    id: "laadsfad",
+    id: "laadsfadaa",
     name: "keita",
   };
   const sendSignUp = async (data) => {
@@ -46,7 +46,7 @@ function Test() {
   const data3 = {
     id: 1,
   };
-  const sendRecipeDetail = async () => {
+  const sendRecipeDetail = async (data) => {
     try {
       const res = await recipeDetail(data);
       console.log(res);
@@ -61,12 +61,12 @@ function Test() {
   };
 
   const data4 = {
-    user_id: "aihsdfi", //ユーザ　ID
-    recipe_id: 5, //レシピID
+    user_id: "aihsdfi",
+    recipe_id: 5,
   };
-  const sendList = async () => {
+  const sendList = async (data) => {
     try {
-      const res = await list(data4);
+      const res = await list(data);
       console.log(res);
       if (res.status === 200) {
         console.log("test");
@@ -80,13 +80,13 @@ function Test() {
 
   return (
     <div>
-      <button onClick={() => sendSignUp()}>signUp</button>
+      <button onClick={() => sendSignUp(data1)}>signUp</button>
       <br />
-      <button onClick={() => sendRecipeList()}>sendRecipeList</button>
+      <button onClick={() => sendRecipeList(data2)}>sendRecipeList</button>
       <br />
-      <button onClick={() => sendRecipeDetail()}>sendRecipeDetail</button>
+      <button onClick={() => sendRecipeDetail(data3)}>sendRecipeDetail</button>
       <br />
-      <button onClick={() => sendList()}>sendList</button>
+      <button onClick={() => sendList(data4)}>sendList</button>
       <br />
     </div>
   );
