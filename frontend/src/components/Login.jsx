@@ -1,6 +1,7 @@
 import { auth } from '../firebase';
 import { useEffect } from 'react';
 import LoginButton from './LoginButton';
+import "../assets/css/Login.css";
 
 function Login() {
     useEffect(() => {
@@ -13,8 +14,10 @@ function Login() {
     },[auth]);
 
     return (
-      <div>
-        <LoginButton />
+      <div className="background">
+        <div className="loginButton">
+            <LoginButton />
+        </div>
       </div>
     );
   }
