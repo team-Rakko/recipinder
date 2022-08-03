@@ -72,7 +72,7 @@ function Swipe() {
 
   return (
     <div>
-      <div className="cardContainer">
+      <div className="cardContainer ">
         {db.map((character, index) => (
           <div style={{ position: "absolute", left: 20, right: 20, top: 80 }}>
             <TinderCard
@@ -85,7 +85,8 @@ function Swipe() {
               <div
                 style={{
                   backgroundImage: "url(" + character.url + ")",
-                  height: "100px",
+                  width: "400",
+                  height: "180",
                   backgroundSize: "contain",
                 }}
                 className="card"
@@ -96,7 +97,7 @@ function Swipe() {
           </div>
         ))}
       </div>
-      <div className="buttons">
+      <div className="buttons bg-black">
         <button
           style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
           onClick={() => swipe("left")}

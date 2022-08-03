@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     );
 
 CREATE TABLE IF NOT EXISTS `recipinder`.`recipis` (
-    `id` VARCHAR(64) NOT NULL COMMENT 'レシピID',
+    `id` MEDIUMINT NOT NULL AUTO_INCREMENT COMMENT 'レシピID',
     `recipe_name` VARCHAR(64) NOT NULL COMMENT 'レシピネーム',
     `description` VARCHAR(512) NOT NULL COMMENT 'レシピ概要',
     `url` VARCHAR(128) NOT NULL COMMENT '料理画像URL',
@@ -48,3 +48,46 @@ CREATE TABLE IF NOT EXISTS `recipinder`.`review` (
 INSERT INTO users (id,name) VALUES ("1","rakko1");
 INSERT INTO users (id,name) VALUES ("2","rakko2");
 
+
+-- `id` VARCHAR(64) NOT NULL COMMENT 'レシピID',
+--     `recipe_name` VARCHAR(64) NOT NULL COMMENT 'レシピネーム',
+--     `description` VARCHAR(512) NOT NULL COMMENT 'レシピ概要',
+--     `url` VARCHAR(128) NOT NULL COMMENT '料理画像URL',
+--     `place` integer NOT NULL COMMENT '値段',
+--     `ingredients` VARCHAR(64) NOT NULL COMMENT '材料ID',
+--     `tag` integer NOT NULL COMMENT 'tagid',
+--     `evaluation` integer NOT NULL COMMENT '評価',
+-- recipe
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
+INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);

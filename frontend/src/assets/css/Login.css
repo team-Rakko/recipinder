@@ -1,0 +1,13 @@
+.background {
+    width: 100vw;
+    height: 100vh;
+    background-image : url("../images/LoginBackImg.png");
+    background-size: cover;
+    
+}
+.loginButton {
+    position:  absolute; 
+    top: 400px;
+    left: 150px;
+    z-index: 10;
+}
