@@ -9,7 +9,8 @@ import (
 
 const (
 	//select work
-	SelectRecipeList = "select recipis.id,recipis.recipe_name,recipis.url from recipis where id > ? and tag = ? limit 10"
+	SelectRecipeList   = "select recipis.id,recipis.recipe_name,recipis.url from recipis where id > ? and tag = ? limit 10"
+	SelectRecipeDetail = "select recipis.recipe_name,recipis.description,recipis.url,recipis.place,recipis.ingredients,recipis.evaluation from recipis where id = ?"
 )
 
 ///post work
@@ -55,4 +56,31 @@ func (info *readRecipe) Request(recipeInfo dto.RecipeListRequest) ([]dto.RecipeL
 	}
 
 	return list, err
+}
+
+type readRecipeDetail struct {
+}
+
+func MakeReadRecipeDetailClient() readRecipeDetail {
+	return readRecipeDetail{}
+}
+
+var (
+	rd  dto.RecipeDetail
+	rdr dto.RecipeDetailRequest
+)
+
+func (info *readRecipeDetail) Request(recipeInfo dto.RecipeDetailRequest) (dto.RecipeDetail, error) {
+
+	var err error
+	var recipe dto.RecipeDetail
+	row := Conn.QueryRow(SelectRecipeDetail, recipeInfo.Id)
+	if err := row.Scan(&recipe.RecipeName, &recipe.Description, &recipe.Url, &recipe.Place, &recipe.Ingredients, &recipe.Evaluation); err != nil {
+		if err == sql.ErrNoRows {
+			return rd, errors.New("mail address is not true")
+		}
+		log.Println(err)
+	}
+
+	return recipe, err
 }
