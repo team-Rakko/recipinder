@@ -19,7 +19,7 @@ function Login() {
                 const userInfo = {userName: userName, uid: uid};
 
                 setUserInfo(userInfo); // ユーザー情報を保持
-                navigate('/'); // 画面遷移
+                navigate('/swipe'); // 画面遷移
 
             }
         });
