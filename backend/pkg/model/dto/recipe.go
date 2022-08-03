@@ -11,3 +11,31 @@ type RecipeList struct {
 	RecipeName string `json:"name"`
 	Url        string `json:"url"`
 }
+
+type RecipeDetailRequest struct {
+	Id int `json:"id"` //レシピid
+}
+
+//レシピの詳細情報を格納する構造体
+type RecipeDetail struct {
+	RecipeName  string `json:"name"`
+	Description string `json:"description"`
+	Url         string `json:"url"`
+	Place       int    `json:"place"`
+	Ingredients string `json:"ingredients"`
+	Evaluation  int    `json:"evaluation"`
+}
+
+//CREATE TABLE IF NOT EXISTS `recipinder`.`recipis` (
+//`id` MEDIUMINT NOT NULL AUTO_INCREMENT COMMENT 'レシピID',
+//`recipe_name` VARCHAR(64) NOT NULL COMMENT 'レシピネーム',
+//`description` VARCHAR(512) NOT NULL COMMENT 'レシピ概要',
+//`url` VARCHAR(128) NOT NULL COMMENT '料理画像URL',
+//`place` integer NOT NULL COMMENT '値段',
+//`ingredients` VARCHAR(64) NOT NULL COMMENT '材料ID',
+//`tag` integer NOT NULL COMMENT 'tagid',
+//`evaluation` integer NOT NULL COMMENT '評価',
+//`created_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) COMMENT '作成時',
+//`updated_at` DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6) COMMENT '更新時',
+//PRIMARY KEY (`id`)
+//);
