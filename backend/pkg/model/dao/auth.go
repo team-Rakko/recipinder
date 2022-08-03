@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"github.com/go-sql-driver/mysql"
 	"recipinder/pkg/model/dto"
 )
 
@@ -24,6 +25,11 @@ func (info *signUp) Request(userInfo dto.SignUpRequest) (string, error) {
 	}
 
 	_, err = stmt.Exec(userInfo.Id, userInfo.Name)
+	if mysqlErr, ok := err.(*mysql.MySQLError); ok {
+		if mysqlErr.Number == 1062 {
+			return "1062", err
+		}
+	}
 
 	return "", err
 }

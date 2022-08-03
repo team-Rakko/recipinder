@@ -24,9 +24,18 @@ func SignUp() gin.HandlerFunc {
 		}
 
 		client := dao.MakeSignUpClient()
-		_, err := client.Request(sur)
+		me, err := client.Request(sur)
 		if err != nil {
 			log.Println(err)
+			if me == "1062" {
+				view.ReturnErrorResponse(
+					c,
+					http.StatusBadRequest,
+					"Bad Request",
+					"already exsist user id",
+				)
+				return
+			}
 			view.ReturnErrorResponse(
 				c,
 				http.StatusInternalServerError,
@@ -35,7 +44,6 @@ func SignUp() gin.HandlerFunc {
 			)
 			return
 		}
-
 		c.JSON(http.StatusOK, view.ReturnSignResponse(sur.Id))
 	}
 }
