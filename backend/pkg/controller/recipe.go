@@ -11,7 +11,6 @@ import (
 
 func RecipeList() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		log.Println("test")
 		var rlr dto.RecipeListRequest
 		if err := c.BindJSON(&rlr); err != nil {
 			log.Println(err)
@@ -26,6 +25,37 @@ func RecipeList() gin.HandlerFunc {
 
 		client := dao.MakeReadRecipeClient()
 		response, err := client.Request(rlr)
+		if err != nil {
+			log.Println(err)
+			view.ReturnErrorResponse(
+				c,
+				http.StatusInternalServerError,
+				"Internal Server Error",
+				err.Error(),
+			)
+			return
+		}
+
+		c.JSON(http.StatusOK, response)
+	}
+}
+
+func RecipeDetail() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var rdr dto.RecipeDetailRequest
+		if err := c.BindJSON(&rdr); err != nil {
+			log.Println(err)
+			view.ReturnErrorResponse(
+				c,
+				http.StatusBadRequest,
+				"Bad Request",
+				"Wrong request body",
+			)
+			return
+		}
+
+		client := dao.MakeReadRecipeDetailClient()
+		response, err := client.Request(rdr)
 		if err != nil {
 			log.Println(err)
 			view.ReturnErrorResponse(
