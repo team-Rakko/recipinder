@@ -1,21 +1,22 @@
-import React, { useState, useMemo, useRef } from "react";
-import TinderCard from "react-tinder-card";
+import React, { useState, useMemo, useRef } from 'react';
+import TinderCard from 'react-tinder-card';
+import '../assets/css/swipe.css';
 
 const db = [
   {
     id: 0,
-    name: "Richard Hendricks",
-    url: "./img/meat.jpg",
+    name: '豚の生姜焼き',
+    url: './img/meat.jpg',
   },
   {
     id: 1,
-    name: "Erlich Bachman",
-    url: "./img/fish.jpg",
+    name: 'シャケのムニエル',
+    url: './img/fish.jpg',
   },
   {
     id: 2,
-    name: "Monica Hall",
-    url: "./img/vegetable.jpg",
+    name: '奉天層の肉巻き',
+    url: './img/vegetable.jpg',
   },
 ];
 
@@ -72,62 +73,49 @@ function Swipe() {
 
   return (
     <div>
-      <div className="cardContainer ">
-        {db.map((character, index) => (
-          <div style={{ position: "absolute", left: 20, right: 20, top: 80 }}>
-            <TinderCard
-              ref={childRefs[index]}
-              className="swipe"
-              key={character.name}
-              onSwipe={(dir) => swiped(dir, character.name, index)}
-              onCardLeftScreen={() => outOfFrame(character.name, index)}
-            >
-              <div
-                style={{
-                  backgroundImage: "url(" + character.url + ")",
-                  width: "400",
-                  height: "180",
-                  backgroundSize: "contain",
-                }}
-                className="card"
+      {/* <div className="back-gradation z-10 absolute"></div> */}
+      <div className=" hadow-2xl m-40 pb-10 z-20">
+        <div className="grid grid-cols-1 relative my-60">
+          <div className="border-4 border-black">
+            {db.map((character, index) => (
+              <TinderCard
+                ref={childRefs[index]}
+                key={character.name}
+                onSwipe={(dir) => swiped(dir, character.name, index)}
+                onCardLeftScreen={() => outOfFrame(character.name, index)}
               >
-                <h3>{character.name}</h3>
-              </div>
-            </TinderCard>
+                <div className="absolute swiper">
+                  <img src={character.url} alt="" className="w-60 h-60" />
+                  <p className="text-center text-2xl bg-white">
+                    {character.name}
+                  </p>
+                </div>
+              </TinderCard>
+            ))}
           </div>
-        ))}
+        </div>
+        <div className=" grid grid-cols-3 mx-10 gap-10">
+          <button className="shadow-lg py-5" onClick={() => swipe('left')}>
+            作らない
+          </button>
+          <button className="shadow-lg py-5" onClick={() => goBack()}>
+            リストに追加する
+          </button>
+          <button className="shadow-lg py-5" onClick={() => swipe('right')}>
+            作る
+          </button>
+        </div>
       </div>
-      <div className="buttons bg-black">
-        <button
-          style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
-          onClick={() => swipe("left")}
-        >
-          Swipe left!
-        </button>
-        <button
-          style={{ backgroundColor: !canGoBack && "#c3c4d3" }}
-          onClick={() => goBack()}
-        >
-          Undo swipe!
-        </button>
-        <button
-          style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
-          onClick={() => swipe("right")}
-        >
-          Swipe right!
-        </button>
-      </div>
-      {lastDirection ? (
-        <h2 key={lastDirection} className="infoText">
-          You swiped {lastDirection}
-        </h2>
-      ) : (
-        <h2 className="infoText">
-          Swipe a card or press a button to get Restore Card button visible!
-        </h2>
-      )}
     </div>
   );
 }
-
+// {lastDirection ? (
+//   <h2 key={lastDirection} className="infoText">
+//     You swiped {lastDirection}
+//   </h2>
+// ) : (
+//   <h2 className="infoText">
+//     Swipe a card or press a button to get Restore Card button visible!
+//   </h2>
+// )}
 export default Swipe;
