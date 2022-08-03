@@ -1,8 +1,8 @@
-import React, { useState, useMemo, useRef } from "react";
-import TinderCard from "react-tinder-card";
-import "../assets/css/swipe.css";
+import React, { useState, useMemo, useRef } from 'react';
+import TinderCard from 'react-tinder-card';
+import '../assets/css/swipe.css';
 import { ConfirmationModal } from './ConfirmationModal';
-import { recipeList } from "../lib/api.jsx";
+import { recipeList } from '../lib/api.jsx';
 
 const data2 = {
   tag: 0,
@@ -13,9 +13,9 @@ const sendRecipeList = async (data) => {
     const res = await recipeList(data);
     console.log(res);
     if (res.status === 200) {
-      console.log("test");
+      console.log('test');
     } else {
-      console.log("test2");
+      console.log('test2');
     }
   } catch (err) {
     console.log(err);
@@ -24,19 +24,18 @@ const sendRecipeList = async (data) => {
 const db = [
   {
     id: 0,
-    name: "豚の生姜焼き",
-    url: "./img/meat.jpg",
+    name: '豚の生姜焼き',
+    url: './img/meat.jpg',
   },
   {
     id: 1,
-    name: "シャケのムニエル",
-    url: "./img/fish.jpg",
+    name: 'シャケのムニエル',
+    url: './img/fish.jpg',
   },
   {
     id: 2,
     name: 'ほうれん草の肉巻き',
     url: './img/vegetable.jpg',
-
   },
 ];
 
@@ -151,9 +150,7 @@ function Swipe() {
             </button>
           </div>
         </div>
-
       )}
-      </div>
     </div>
   );
 }
