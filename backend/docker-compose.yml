@@ -12,12 +12,12 @@ services:
 #      DOMAINS: 'zaipher-keita.com -> http://api'
 #      STAGE: 'production'
 #      # FORCE_RENEW: 'true'
-  nginx:
-    build: ./nginx
-    ports:
-      - 80:80
-    depends_on:
-      - api
+#  nginx:
+#    build: ./nginx
+#    ports:
+#      - 80:80
+#    depends_on:
+#      - api
   api:
     build:
       context: .
