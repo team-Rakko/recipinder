@@ -54,6 +54,7 @@ function Login() {
       
       <div className="bg-gray-500 bg-opacity-30">
         <h1 className="title text-center text-white">recipinder</h1>
+        <p class="message text-center text-white py-5">お金と健康を両立したいあなたに</p>
       </div>
       
       <div className="justify-center flex pt-40">
