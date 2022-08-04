@@ -5,72 +5,87 @@ import "../assets/css/swipe.css";
 import { ConfirmationModal } from "./ConfirmationModal";
 import { recipeList } from "../lib/api.jsx";
 
-const data2 = {
+var data = {
   tag: 0,
-  id: 11,
+  id: 1,
 };
-const sendRecipeList = async (data) => {
-  try {
-    const res = await recipeList(data);
-    console.log(res);
-    if (res.status === 200) {
-      console.log("test");
-    } else {
-      console.log("test2");
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-const db = [
-  {
-    id: 0,
-    name: "豚の生姜焼き",
-    url: "./img/meat.jpg",
-  },
-  {
-    id: 1,
-    name: "シャケのムニエル",
-    url: "./img/fish.jpg",
-  },
-  {
-    id: 2,
-    name: "ほうれん草の肉巻き",
-    url: "./img/vegetable.jpg",
-  },
-];
+// const sendRecipeList = async (data) => {
+//   try {
+//     const res = await recipeList(data);
+//     if (res.status === 200) {
+//     } else {
+//     }
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 function Swipe() {
   useEffect(() => {
     // ローカルストレージから取得
     const typeId = localStorage.getItem("typeId");
-    console.log(typeId);
   }, []);
   const location = useLocation();
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(db.length - 1);
+  const [currentIndex, setCurrentIndex] = useState();
   const [lastDirection, setLastDirection] = useState();
   const currentIndexRef = useRef(currentIndex);
+
   const [key, setKey] = useState("");
   const [count, setCount] = useState(1);
+  const [db, setDb] = useState({ data: [] });
+  var newCurrentIndex = 10;
+  var prevData = null;
 
-  console.log(location.state);
+  useEffect(() => {
+    if (currentIndex != undefined && currentIndex > 1) {
+      return;
+    } else if (currentIndex == 1) {
+      let lastId = db.data[0].id;
+      prevData = db.data.slice(0, 2);
+      data = {
+        tag: 0,
+        id: Number(lastId),
+      };
+    }
+    var obj = fetch("http://118.27.15.162/recipe/list", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }).then((res) => {
+      return res.json();
+    });
+    obj
+      .then((json) => {
+        if (prevData != null) {
+          json = json.slice(0, -2);
+          json = prevData.reverse().concat(json);
+        }
+
+        json = json.reverse();
+        newCurrentIndex = json.length;
+        setDb((preSetting) => ({
+          ...preSetting,
+          data: json,
+        }));
+        setCurrentIndex(newCurrentIndex - 1);
+      })
+      .catch((err) => console.log(err));
+  }, [currentIndex]);
 
   const childRefs = useMemo(
     () =>
-      Array(db.length)
+      Array(newCurrentIndex)
         .fill(0)
         .map((i) => React.createRef()),
-    []
+    [newCurrentIndex]
   );
 
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val);
-    currentIndexRef.current = val;
   };
 
-  const canGoBack = currentIndex < db.length - 1;
+  const canGoBack = currentIndex < db.data.length - 1;
 
   const canSwipe = currentIndex >= 0;
 
@@ -83,14 +98,17 @@ function Swipe() {
   const outOfFrame = (name, idx) => {
     // console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
     // handle the case in which go back is pressed before card goes outOfFrame
-    currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
+    // currentIndex >= idx && childRefs[idx].current.restoreCard();
     // TODO: when quickly swipe and restore multiple times the same card,
     // it happens multiple outOfFrame events are queued and the card disappear
     // during latest swipes. Only the last outOfFrame event should be considered valid
   };
 
   const swipe = async (dir) => {
-    if (canSwipe && currentIndex < db.length) {
+    // debugger;
+    // debugger;
+    if (canSwipe && currentIndex < db.data.length) {
+      // debugger;
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
   };
@@ -113,7 +131,6 @@ function Swipe() {
         navigate("/detail", { state: { id: 1 } });
       }
     }
-    console.log(e.code);
   });
 
   return (
@@ -123,10 +140,10 @@ function Swipe() {
         {modal && <ConfirmationModal />}
         <div className="grid grid-cols-1 relative sm:my-40 my-24">
           <div className="">
-            {db.map((character, index) => (
+            {db.data.map((character, index) => (
               <TinderCard
                 ref={childRefs[index]}
-                key={character.name}
+                key={character.id}
                 onSwipe={(dir) => swiped(dir, character.name, index)}
                 onCardLeftScreen={() => {
                   outOfFrame(character.name, index);
