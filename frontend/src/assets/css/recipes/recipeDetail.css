@@ -1,0 +1,20 @@
+.back-gradation-for-detail {
+  background: linear-gradient(135deg, red, orange);
+  background: -webkit-linear-gradient(-45deg, red, orange);
+  background: -moz-linear-gradient(-45deg, red, orange);
+  min-height: 100vh;
+  animation-name: gradation;
+  inset: 0;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+@keyframes gradation {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
