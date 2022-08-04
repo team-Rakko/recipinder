@@ -1,9 +1,10 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import TinderCard from 'react-tinder-card';
 import '../assets/css/swipe.css';
 import { ConfirmationModal } from './ConfirmationModal';
 import { recipeList } from '../lib/api.jsx';
+
 const data2 = {
   tag: 0,
   id: 11,
@@ -40,12 +41,16 @@ const db = [
 ];
 
 function Swipe() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState();
   const currentIndexRef = useRef(currentIndex);
   const [key, setKey] = useState('');
+  const [count, setCount] = useState(1);
+
+  console.log(location.state);
 
   const childRefs = useMemo(
     () =>
@@ -92,26 +97,19 @@ function Swipe() {
     updateCurrentIndex(newIndex);
     await childRefs[newIndex].current.restoreCard();
   };
-
-  const windowKeyEvent = () => {
-    window.addEventListener('keydown', (e) => {
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || 'ArrowLeft' || 'ArrowLeft') {
       if (e.key === 'ArrowRight') {
+        swipe('right');
         e.preventDefault();
+      } else if (e.key === 'ArrowLeft') {
+        swipe('left');
+      } else if (e.key === 'ArrowUp') {
+        navigate('/detail', { state: { id: 1 } });
       }
-      setKey(e.code);
-    });
-    if (key === 'ArrowRight') {
-      swipe('right');
-    } else if (key === 'ArrowLeft') {
-      swipe('left');
-    } else if (key === 'ArrowUp') {
-      setModal(true);
     }
-    setKey('');
-  };
-  useEffect(() => {
-    windowKeyEvent();
-  }, [key]);
+    console.log(e.code);
+  });
 
   return (
     <div>
