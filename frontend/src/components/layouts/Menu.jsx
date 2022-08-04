@@ -5,8 +5,10 @@ import other from "../../assets/images/other.svg";
 import vege from "../../assets/images/vege.svg";
 import { useNavigate } from "react-router-dom";
 import { recipeList } from "../../lib/api";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../../App";
 export const Menu = ({ hover }) => {
+  const { userInfo, setUserInfo } = useContext(UserContext);
   const navigate = useNavigate();
   // const postSwipeRecipe = (postId) => {
   //   const datas = recipeList({
@@ -18,8 +20,11 @@ export const Menu = ({ hover }) => {
   //   return datas;
   // };
   const selectType = (typeId) => {
-    // ローカルストレージへ保存
-    localStorage.setItem("typeId", typeId);
+    // conTextのtypeのみ変更
+    setUserInfo((userInfo) => ({
+      ...userInfo,
+      type: typeId,
+    }));
     navigate("/swipe");
   };
   // const [items, setItems] = useState(postSwipeRecipe(0));

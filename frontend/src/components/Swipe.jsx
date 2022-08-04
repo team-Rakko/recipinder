@@ -1,9 +1,10 @@
-import React, { useState, useMemo, useRef, useEffect } from "react";
+import React, { useState, useMemo, useRef, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import TinderCard from "react-tinder-card";
 import "../assets/css/swipe.css";
 import { ConfirmationModal } from "./ConfirmationModal";
 import { recipeList } from "../lib/api.jsx";
+import { UserContext } from "../App";
 
 const data2 = {
   tag: 0,
@@ -41,11 +42,10 @@ const db = [
 ];
 
 function Swipe() {
+  const { userInfo, setUserInfo } = useContext(UserContext);
   useEffect(() => {
-    // ローカルストレージから取得
-    const typeId = localStorage.getItem("typeId");
-    console.log(typeId);
-  }, []);
+    console.log(userInfo.type);
+  }, [userInfo.type]);
   const location = useLocation();
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
