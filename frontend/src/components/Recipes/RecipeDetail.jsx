@@ -1,26 +1,56 @@
-import { useLocalStorage } from '../../hooks/useLocalStorage.js';
-import { useEffect } from 'react';
-import '../../assets/css/recipes/recipeDetail.css';
+import { useLocalStorage } from "../../hooks/useLocalStorage.js";
+import { useState } from "react";
+import { useEffect } from "react";
+import "../../assets/css/recipes/recipeDetail.css";
+import { recipeDetail } from "../../lib/api";
+import notImg from "../../assets/images/notImg.jpeg";
+
 export const RecipeDetail = () => {
   // recipe情報はこのページに遷移するときにlocalstorageに保存してlocalstorageから参照する
   //   ここからテスト用
-  const [recipe, setRecipe] = useLocalStorage('name', 'initialValue');
+  // const [recipe, setRecipe] = useLocalStorage("name", "initialValue");
+  const [recipe, setRecipe] = useState({
+    name: "not found",
+    description: "",
+    url: notImg, // 灰色の画像をセット
+    place: "0",
+    ingredients: ["料理が見つかりませんでした"],
+    evaluation: "0",
+    process: [],
+  });
+
   useEffect(() => {
-    setRecipe({
-      name: 'niku',
-      description: '食ってみな飛ぶぞ',
-      url: 'https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600',
-      place: 500,
-      ingredients: '鶏モモ肉,卵',
-      evaluation: 3,
+    const sendData = {
+      id: 1, // ローカルストレージから取得するようあとで変更
+    };
+
+    recipeDetail(sendData).then((recipeData) => {
+      const ingredients = recipeData.data.ingredients.split(",");
+
+      const process = recipeData.data.Process;
+      const prosessList = process.map((value) => {
+        return value.explanation;
+      });
+
+      const recipeDetail = {
+        name: recipeData.data.name,
+        description: recipeData.data.description,
+        url: recipeData.data.url,
+        place: recipeData.data.place,
+        ingredients: ingredients,
+        evaluation: recipeData.data.evaluation,
+        process: prosessList,
+      };
+      setRecipe(recipeDetail);
     });
   }, []);
+
   const procedure = [
-    '肉を焼く',
-    '肉に胡椒をかける',
-    '出来上がり',
-    'お皿の用意',
-    '食べる',
+    "肉を焼く",
+    "肉に胡椒をかける",
+    "出来上がり",
+    "お皿の用意",
+    "食べる",
   ];
   return (
     <div className="back-gradation-for-detail py-10">
@@ -35,7 +65,9 @@ export const RecipeDetail = () => {
           </div>
           <div>
             <p className="flex justify-center text-lg py-5">材料</p>
-            <p>{recipe.ingredients}</p>
+            {recipe.ingredients.map((value) => (
+              <p>・ {value}</p>
+            ))}
           </div>
         </div>
         <div className="border-y-4 py-3 my-3">
@@ -44,7 +76,7 @@ export const RecipeDetail = () => {
         </div>
 
         <div className="grid md:grid-cols-3 grid-cols-1 gap-5 px-10">
-          {procedure.map((p, index) => {
+          {recipe.process.map((p, index) => {
             return (
               <div className="shadow-lg p-5 place-items-center justify-items-center lg:my-8 my-2">
                 <p className="text-center border-b-2">手順{index + 1}</p>
