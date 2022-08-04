@@ -17,11 +17,6 @@
 
 
 .message {
-    width: 60vw;
-    height: 25vw;
-    font-size: 3vw;
-}
-
-@media (max-width: 430px) {
-    .message {width: 100%;}
+    font-size: 2vw;
+    opacity: 0.9;
 }
