@@ -9,14 +9,9 @@ function App() {
   const [userInfo, setUserInfo] = useState({
     userName: "",
     uid: "",
-<<<<<<< HEAD
     login: false,
     path: "/swipe",
     type: 0,
-=======
-    login: true,
-    path: "/swipe2",
->>>>>>> 31ecd5a322c0731f6dfc3a03faf8fe12465b97ad
   });
   const contextValue = { userInfo, setUserInfo };
 
