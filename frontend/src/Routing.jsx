@@ -1,14 +1,14 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
-import { UserContext } from './App';
-import Test from './components/Test.jsx';
-import Home from './components/Home.jsx';
-import Login from './components/Login.jsx';
-import Swipe from './components/Swipe.jsx';
-import { Recipes } from './components/Recipes/Recipes';
-import { RecipeDetail } from './components/Recipes/RecipeDetail';
-import './App.css';
-import { Sidebar } from './components/layouts/Sidebar';
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { UserContext } from "./App";
+import Test from "./components/Test.jsx";
+import Home from "./components/Home.jsx";
+import Login from "./components/Login.jsx";
+import Swipe from "./components/Swipe.jsx";
+import { Recipes } from "./components/Recipes/Recipes";
+import { RecipeDetail } from "./components/Recipes/RecipeDetail";
+import "./App.css";
+import { Sidebar } from "./components/layouts/Sidebar";
 
 function Routing() {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ function Routing() {
         ...userInfo,
         path: window.location.pathname,
       }));
-      navigate('/login');
+      navigate("/login");
     }
   }, [userInfo.login]);
 
