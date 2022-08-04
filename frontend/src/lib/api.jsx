@@ -26,3 +26,7 @@ export const recipeDetail = (data) => {
 export const list = (data) => {
   return client.post("list", data);
 };
+
+export const getlist = (data) => {
+  return client.post("list/user", data);
+};

@@ -45,13 +45,6 @@ export const RecipeDetail = () => {
     });
   }, []);
 
-  const procedure = [
-    "肉を焼く",
-    "肉に胡椒をかける",
-    "出来上がり",
-    "お皿の用意",
-    "食べる",
-  ];
   return (
     <div className="back-gradation-for-detail py-10">
       <div className=" bg-white place-items-center justify-items-center shadow-lg rounded-md lg:mx-52 mx-10">
