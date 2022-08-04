@@ -5,6 +5,7 @@ import Test from './components/Test.jsx';
 import Home from './components/Home.jsx';
 import Login from './components/Login.jsx';
 import Swipe from './components/Swipe.jsx';
+import { Recipes } from './components/Recipes/Recipes';
 import './App.css';
 import { Sidebar } from './components/layouts/Sidebar';
 
@@ -30,6 +31,7 @@ function Routing() {
                 <Route path="/" element={<Sidebar />}></Route>
                 <Route path="test" element={<Sidebar />}></Route>
                 <Route path="swipe" element={<Sidebar />}></Route>
+                <Route path="recipes" element={<Recipes />}></Route>
                 </Routes>
             
                 <Routes>
@@ -40,7 +42,6 @@ function Routing() {
                 <Route path="swipe" element={<Swipe />}></Route>
             </Routes>
             
-
         </div>
     );
 }
