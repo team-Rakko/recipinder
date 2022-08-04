@@ -25,7 +25,7 @@ const sendRecipeList = async (data) => {
 const db = [
   {
     id: 0,
-    name: '豚の生姜焼き',
+    name: '豚の生姜焼きfdボアsぼfばおsbふぉdじゃfhdsoafhos',
     url: './img/meat.jpg',
   },
   {
@@ -97,20 +97,43 @@ function Swipe() {
     updateCurrentIndex(newIndex);
     await childRefs[newIndex].current.restoreCard();
   };
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || 'ArrowLeft' || 'ArrowLeft') {
-      if (e.key === 'ArrowRight') {
-        swipe('right');
-        e.preventDefault();
-      } else if (e.key === 'ArrowLeft') {
-        swipe('left');
-      } else if (e.key === 'ArrowUp') {
-        navigate('/detail', { state: { id: 1 } });
-      }
-    }
-    console.log(e.code);
-  });
+  // window.addEventListener('keydown', (e) => {
+  //   if (e.key === 'ArrowRight' || 'ArrowLeft' || 'ArrowUp') {
+  //     if (e.key === 'ArrowRight') {
+  //       swipe('right');
+  //       e.preventDefault();
+  //     } else if (e.key === 'ArrowLeft') {
+  //       swipe('left');
+  //     } else if (e.key === 'ArrowUp') {
+  //       navigate('/detail', { state: { id: 1 } });
+  //     }
+  //   }
+  //   console.log(e.code);
+  // });
 
+  const windowKeyEvent = () => {
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+      }
+      if (key == e.code) {
+        setKey('');
+        setKey(e.code);
+      } else {
+        setKey(() => e.code);
+      }
+    });
+  };
+  useEffect(() => {
+    windowKeyEvent();
+    if (key === 'ArrowRight') {
+      swipe('right');
+    } else if (key === 'ArrowLeft') {
+      swipe('left');
+    } else if (key === 'ArrowUp') {
+      navigate('/detail', { state: { id: 1 } });
+    }
+  }, [key]);
   return (
     <div>
       <div className="back-gradation absolute top-0 right-0"></div>
@@ -127,18 +150,18 @@ function Swipe() {
                   outOfFrame(character.name, index);
                 }}
               >
-                <div className="absolute swiper">
-                  <div className="flex justify-center">
+                <div className="absolute swiper w-96 h-auto">
+                  <div className="my-1 mx-auto">
                     <img
                       src={character.url}
                       alt=""
-                      className="w-80 h-60 rounded-md flex justify-center"
+                      className="w-full h-60 rounded-md flex justify-center"
                     />
-                  </div>
 
-                  <p className="text-center text-2xl bg-white rounded-md">
-                    {character.name}
-                  </p>
+                    <p className="break-words w-full py-10 text-center text-xl bg-white rounded-md">
+                      {character.name}
+                    </p>
+                  </div>
                 </div>
               </TinderCard>
             ))}
