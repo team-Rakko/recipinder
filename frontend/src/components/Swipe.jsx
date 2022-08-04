@@ -68,7 +68,7 @@ function Swipe() {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
   };
-
+  // 画面外に出た時にこれが実行されるのはラグがある
   const outOfFrame = (name, idx) => {
     // console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
     // handle the case in which go back is pressed before card goes outOfFrame
@@ -94,21 +94,22 @@ function Swipe() {
 
   const windowKeyEvent = () => {
     window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+      }
       setKey(e.code);
-      console.log(key);
     });
     if (key === 'ArrowRight') {
-      setModal(true);
+      swipe('right');
     } else if (key === 'ArrowLeft') {
       swipe('left');
     } else if (key === 'ArrowUp') {
-      swipe('right');
+      setModal(true);
     }
     setKey('');
   };
   useEffect(() => {
     windowKeyEvent();
-    console.log('key変わった！！');
   }, [key]);
 
   return (
@@ -149,24 +150,26 @@ function Swipe() {
           </div>
           <div className=" grid lg:grid-cols-3 grid-cols-1 md:mx-20 mx-5 gap-5">
             <button
-              className="shadow-lg sm:py-5 py-2 px-10"
+              className="shadow-lg sm:py-5 py-2 px-10 rounded-md button"
               onClick={() => swipe('left')}
             >
-              作らない
+              興味がない
             </button>
             <button
-              className="shadow-lg lg:py-5 py-2"
+              className="shadow-lg lg:py-5 py-2 rounded-md button"
+              onClick={() => {
+                setModal(true);
+              }}
+            >
+              今作る
+            </button>
+            <button
+              className="shadow-lg lg:py-5 py-2 rounded-md button"
               onClick={() => {
                 swipe('right');
               }}
             >
-              リストに追加する
-            </button>
-            <button
-              className="shadow-lg lg:py-5 py-2"
-              onClick={() => setModal(true)}
-            >
-              作る
+              興味がある
             </button>
           </div>
         </div>
