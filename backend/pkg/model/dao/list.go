@@ -13,7 +13,7 @@ const (
 	InsertMyList = "INSERT INTO recipe_user (id,recipe_id,user_id) VALUES (?,?,?)"
 	SelectMyList = "select recipe_user.recipe_id,recipis.recipe_name,recipis.url from recipe_user inner join recipis on recipe_user.recipe_id = recipis.id  where user_id = ?"
 )
-
+ç
 ///post work
 type addMyList struct {
 }
