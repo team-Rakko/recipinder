@@ -452,11 +452,11 @@ INSERT INTO recipe_process (recipe_id,number,explanation) VALUES (60,4,"ボウ�
 --     );
 
 
-INSERT INTO recipe_user (recipe_id,user_id) VALUES (1,1);
-INSERT INTO recipe_user (recipe_id,user_id) VALUES (2,1);
-INSERT INTO recipe_user (recipe_id,user_id) VALUES (3,1);
-INSERT INTO recipe_user (recipe_id,user_id) VALUES (4,1);
-INSERT INTO recipe_user (recipe_id,user_id) VALUES (5,1);
+INSERT INTO recipe_user (recipe_id,user_id) VALUES (1,"1");
+INSERT INTO recipe_user (recipe_id,user_id) VALUES (2,"1");
+INSERT INTO recipe_user (recipe_id,user_id) VALUES (3,"1");
+INSERT INTO recipe_user (recipe_id,user_id) VALUES (4,"1");
+INSERT INTO recipe_user (recipe_id,user_id) VALUES (5,"1");
 
 -- INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
 -- INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);

@@ -12,7 +12,7 @@ type RecipeMyList struct {
 }
 
 type ListReadRequest struct {
-	UserId int `json:"user_id"`
+	UserId string `json:"user_id"`
 }
 
 //スワイプ用の情報を格納するための構造体
