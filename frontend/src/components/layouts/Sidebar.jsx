@@ -9,11 +9,12 @@ export const Sidebar = () => {
   const navigate = useNavigate();
   const [hover, setHover] = useState(false);
   const [styles, setStyles] = useState('left-10');
-  if (!window.location.pathname == '/recipes') {
+  if (window.location.pathname != '/recipes') {
     useEffect(() => {
+      console.log('aa');
       setHover(true);
       setStyles(
-        'left-0 sm:left-20 sm:top-5 top-20 sm:w-3/4 w-full opacity-100'
+        'left-0 sm:left-14 sm:top-5 top-20 sm:w-3/4 w-full opacity-100'
       );
       setTimeout(() => {
         setStyles('left-10 opacity-0 sm:w-3/4 w-full');
@@ -42,7 +43,7 @@ export const Sidebar = () => {
             setHover(true);
             setTimeout(() => {
               setStyles(
-                'left-0 sm:left-20 sm:top-5 top-20 sm:w-3/4 w-full opacity-100'
+                'left-0 sm:left-14 sm:top-5 top-20 sm:w-3/4 w-full opacity-100'
               );
             }, 40);
           }}
