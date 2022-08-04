@@ -27,6 +27,10 @@
   animation-timing-function: ease-in-out;
 }
 
+.button:hover {
+  background: orange;
+}
+
 @keyframes gradation {
   0% {
     background-position: 0% 0%;
