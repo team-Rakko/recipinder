@@ -3,17 +3,15 @@ package dao
 import (
 	"database/sql"
 	"errors"
-	"fmt"
-	"github.com/google/uuid"
 	"log"
 	"recipinder/pkg/model/dto"
 )
 
 const (
-	InsertMyList = "INSERT INTO recipe_user (id,recipe_id,user_id) VALUES (?,?,?)"
+	InsertMyList = "INSERT INTO recipe_user (recipe_id,user_id) VALUES (?,?)"
 	SelectMyList = "select recipe_user.recipe_id,recipis.recipe_name,recipis.url from recipe_user inner join recipis on recipe_user.recipe_id = recipis.id  where user_id = ?"
 )
-ç
+
 ///post work
 type addMyList struct {
 }
@@ -24,17 +22,11 @@ func MakeAddListClient() addMyList {
 
 func (info *addMyList) Request(listInfo dto.ListAddRequest) error {
 
-	u, err := uuid.NewRandom()
-	if err != nil {
-		fmt.Println(err)
-		return err
-	}
-	uu := u.String()
 	stmt, err := Conn.Prepare(InsertMyList)
 	if err != nil {
 		return err
 	}
-	_, err = stmt.Exec(uu, listInfo.RecipeId, listInfo.UserId)
+	_, err = stmt.Exec(listInfo.RecipeId, listInfo.UserId)
 	if err != nil {
 		log.Println(err)
 		return errors.New("Unable to insert data")
