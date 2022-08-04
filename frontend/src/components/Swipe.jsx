@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TinderCard from 'react-tinder-card';
 import '../assets/css/swipe.css';
 import { ConfirmationModal } from './ConfirmationModal';
 import { recipeList } from '../lib/api.jsx';
-
 const data2 = {
   tag: 0,
   id: 11,
@@ -40,6 +40,7 @@ const db = [
 ];
 
 function Swipe() {
+  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState();
@@ -115,65 +116,61 @@ function Swipe() {
   return (
     <div>
       <div className="back-gradation absolute top-0 right-0"></div>
-      {modal ? (
-        <ConfirmationModal setModal={setModal} />
-      ) : (
-        <div className="shadow-2xl pb-10 absolute bg-white swiper-container rounded-md">
-          {modal && <ConfirmationModal />}
-          <div className="grid grid-cols-1 relative sm:my-40 my-24">
-            <div className="">
-              {db.map((character, index) => (
-                <TinderCard
-                  ref={childRefs[index]}
-                  key={character.name}
-                  onSwipe={(dir) => swiped(dir, character.name, index)}
-                  onCardLeftScreen={() => {
-                    outOfFrame(character.name, index);
-                  }}
-                >
-                  <div className="absolute swiper">
-                    <div className="flex justify-center">
-                      <img
-                        src={character.url}
-                        alt=""
-                        className="w-80 h-60 rounded-md flex justify-center"
-                      />
-                    </div>
-
-                    <p className="text-center text-2xl bg-white rounded-md">
-                      {character.name}
-                    </p>
+      <div className="shadow-2xl pb-10 absolute bg-white swiper-container rounded-md">
+        {modal && <ConfirmationModal />}
+        <div className="grid grid-cols-1 relative sm:my-40 my-24">
+          <div className="">
+            {db.map((character, index) => (
+              <TinderCard
+                ref={childRefs[index]}
+                key={character.name}
+                onSwipe={(dir) => swiped(dir, character.name, index)}
+                onCardLeftScreen={() => {
+                  outOfFrame(character.name, index);
+                }}
+              >
+                <div className="absolute swiper">
+                  <div className="flex justify-center">
+                    <img
+                      src={character.url}
+                      alt=""
+                      className="w-80 h-60 rounded-md flex justify-center"
+                    />
                   </div>
-                </TinderCard>
-              ))}
-            </div>
-          </div>
-          <div className=" grid lg:grid-cols-3 grid-cols-1 md:mx-20 mx-5 gap-5">
-            <button
-              className="shadow-lg sm:py-5 py-2 px-10 rounded-md button"
-              onClick={() => swipe('left')}
-            >
-              興味がない
-            </button>
-            <button
-              className="shadow-lg lg:py-5 py-2 rounded-md button"
-              onClick={() => {
-                setModal(true);
-              }}
-            >
-              今作る
-            </button>
-            <button
-              className="shadow-lg lg:py-5 py-2 rounded-md button"
-              onClick={() => {
-                swipe('right');
-              }}
-            >
-              興味がある
-            </button>
+
+                  <p className="text-center text-2xl bg-white rounded-md">
+                    {character.name}
+                  </p>
+                </div>
+              </TinderCard>
+            ))}
           </div>
         </div>
-      )}
+        <div className=" grid lg:grid-cols-3 grid-cols-1 md:mx-20 mx-5 gap-5">
+          <button
+            className="shadow-lg sm:py-5 py-2 px-10 rounded-md button"
+            onClick={() => swipe('left')}
+          >
+            興味がない
+          </button>
+          <button
+            className="shadow-lg lg:py-5 py-2 rounded-md button"
+            onClick={() => {
+              navigate('/detail', { state: { id: 1 } });
+            }}
+          >
+            今作る
+          </button>
+          <button
+            className="shadow-lg lg:py-5 py-2 rounded-md button"
+            onClick={() => {
+              swipe('right');
+            }}
+          >
+            興味がある
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

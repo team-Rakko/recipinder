@@ -15,15 +15,15 @@ function Routing() {
   const { userInfo, setUserInfo } = useContext(UserContext);
 
   // ログインされていなかったらログイン画面へ
-  useEffect(() => {
-    if (!userInfo.login) {
-      setUserInfo((userInfo) => ({
-        ...userInfo,
-        path: window.location.pathname,
-      }));
-      navigate('/login');
-    }
-  }, [userInfo.login]);
+  //   useEffect(() => {
+  //     if (!userInfo.login) {
+  //       setUserInfo((userInfo) => ({
+  //         ...userInfo,
+  //         path: window.location.pathname,
+  //       }));
+  //       navigate('/login');
+  //     }
+  //   }, [userInfo.login]);
 
   return (
     <div>

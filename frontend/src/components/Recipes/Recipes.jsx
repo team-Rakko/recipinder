@@ -1,4 +1,4 @@
-import '../../assets/css/recipes/recipes.css';
+import '../../assets/css/recipes/recipeDetail.css';
 import { Recipe } from './Recipe';
 
 export const Recipes = () => {
@@ -30,9 +30,9 @@ export const Recipes = () => {
     },
   ];
   return (
-    <div className="mx-10">
-      <p className="text-center text-2xl my-10">リスト一覧</p>
-      <div className="grid grid-cols-4 place-items-center justify-items-center gap-5">
+    <div className="back-gradation-for-detail">
+      <p className="text-center text-2xl py-10">リスト一覧</p>
+      <div className="grid md:grid-cols-4 grid-cols-2 place-items-center justify-items-center gap-5 md:px-20 px-5">
         {sampleRecipes.map((recipe) => {
           return <Recipe key={recipe.id} data={recipe} />;
         })}
