@@ -10,7 +10,7 @@ services:
     restart: always
     environment:
       DOMAINS: 'zaipher-keita.com -> http://api'
-      # STAGE: 'production'
+      STAGE: 'production'
       # FORCE_RENEW: 'true'
   api:
     build:
