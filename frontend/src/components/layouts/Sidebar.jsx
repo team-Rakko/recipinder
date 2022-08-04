@@ -7,16 +7,20 @@ import '../../assets/css/menu.css';
 export const Sidebar = () => {
   const [hover, setHover] = useState(false);
   const [styles, setStyles] = useState('left-10');
-  useEffect(() => {
-    setHover(true);
-    setStyles('left-0 sm:left-20 sm:top-5 top-20 sm:w-3/4 w-full opacity-100');
-    setTimeout(() => {
-      setStyles('left-10 opacity-0 sm:w-3/4 w-full');
+  if (!window.location.pathname == '/recipes') {
+    useEffect(() => {
+      setHover(true);
+      setStyles(
+        'left-0 sm:left-20 sm:top-5 top-20 sm:w-3/4 w-full opacity-100'
+      );
       setTimeout(() => {
-        setHover(false);
-      }, 4000);
-    }, 2000);
-  }, []);
+        setStyles('left-10 opacity-0 sm:w-3/4 w-full');
+        setTimeout(() => {
+          setHover(false);
+        }, 4000);
+      }, 2000);
+    }, []);
+  }
 
   return (
     <div
