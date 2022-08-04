@@ -40,3 +40,34 @@ func ListMyRecipe() gin.HandlerFunc {
 		c.JSON(http.StatusOK, view.ReturnListResponse(me))
 	}
 }
+
+func ReadListMyRecipe() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var rrl dto.ListReadRequest
+		if err := c.BindJSON(&rrl); err != nil {
+			log.Println(err)
+			view.ReturnErrorResponse(
+				c,
+				http.StatusBadRequest,
+				"Bad Request",
+				"Wrong request body",
+			)
+			return
+		}
+
+		client := dao.MakeReadListClient()
+		response, err := client.Request(rrl)
+		if err != nil {
+			log.Println(err)
+			view.ReturnErrorResponse(
+				c,
+				http.StatusInternalServerError,
+				"Internal Server Error",
+				err.Error(),
+			)
+			return
+		}
+
+		c.JSON(http.StatusOK, response)
+	}
+}

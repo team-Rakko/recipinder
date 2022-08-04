@@ -22,8 +22,9 @@ func init() {
 	Server.POST("/recipe/list", controller.RecipeList())
 	Server.POST("/recipe/detail", controller.RecipeDetail())
 
-	//リスト関連
+	//マイリスト関連
 	Server.POST("/list", controller.ListMyRecipe())
+	Server.POST("/list/user", controller.ReadListMyRecipe())
 	//レビュー関連
 	Server.POST("/review", controller.RecipeReview())
 }
