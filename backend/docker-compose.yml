@@ -1,5 +1,23 @@
 version: '3.8'
 services:
+#  https-portal:
+#    image: steveltn/https-portal:1
+#    ports:
+#      - '80:80'
+#      - '443:443'
+#    links:
+#      - api
+#    restart: always
+#    environment:
+#      DOMAINS: 'zaipher-keita.com -> http://api'
+#      STAGE: 'production'
+#      # FORCE_RENEW: 'true'
+#  nginx:
+#    build: ./nginx
+#    ports:
+#      - 80:80
+#    depends_on:
+#      - api
   api:
     build:
       context: .
@@ -33,9 +51,3 @@ services:
     volumes:
       - ./db/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./db/mysql/init:/docker-entrypoint-initdb.d
-  nginx:
-    build: ./nginx
-    ports:
-      - 80:80
-    depends_on:
-      - api

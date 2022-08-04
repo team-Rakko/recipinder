@@ -1,15 +1,16 @@
 import "../../assets/css/recipes/recipeDetail.css";
 import { Recipe } from "./Recipe";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getlist } from "../../lib/api";
-import notImg from "../../assets/images/notImg.jpeg";
+import { UserContext } from "../../App";
 
 export const Recipes = () => {
+  const { userInfo, setUserInfo } = useContext(UserContext);
   const [myList, setMyList] = useState([]);
 
   useEffect(() => {
     const sendData = {
-      user_id: 1, // conTextからuserIdを取得するようにする。多分バックエンドでuser_idをintで扱ってるからstringにしてもらう
+      user_id: userInfo.id, // conTextからuserIdを取得するようにする。多分バックエンドでuser_idをintで扱ってるからstringにしてもらう
     };
 
     getlist(sendData).then((myListData) => {
