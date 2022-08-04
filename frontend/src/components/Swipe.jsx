@@ -1,9 +1,9 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import TinderCard from 'react-tinder-card';
-import '../assets/css/swipe.css';
-import { ConfirmationModal } from './ConfirmationModal';
-import { recipeList } from '../lib/api.jsx';
+import React, { useState, useMemo, useRef, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import TinderCard from "react-tinder-card";
+import "../assets/css/swipe.css";
+import { ConfirmationModal } from "./ConfirmationModal";
+import { recipeList } from "../lib/api.jsx";
 
 const data2 = {
   tag: 0,
@@ -14,9 +14,9 @@ const sendRecipeList = async (data) => {
     const res = await recipeList(data);
     console.log(res);
     if (res.status === 200) {
-      console.log('test');
+      console.log("test");
     } else {
-      console.log('test2');
+      console.log("test2");
     }
   } catch (err) {
     console.log(err);
@@ -25,29 +25,34 @@ const sendRecipeList = async (data) => {
 const db = [
   {
     id: 0,
-    name: '豚の生姜焼き',
-    url: './img/meat.jpg',
+    name: "豚の生姜焼き",
+    url: "./img/meat.jpg",
   },
   {
     id: 1,
-    name: 'シャケのムニエル',
-    url: './img/fish.jpg',
+    name: "シャケのムニエル",
+    url: "./img/fish.jpg",
   },
   {
     id: 2,
-    name: 'ほうれん草の肉巻き',
-    url: './img/vegetable.jpg',
+    name: "ほうれん草の肉巻き",
+    url: "./img/vegetable.jpg",
   },
 ];
 
 function Swipe() {
+  useEffect(() => {
+    // ローカルストレージから取得
+    const typeId = localStorage.getItem("typeId");
+    console.log(typeId);
+  }, []);
   const location = useLocation();
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState();
   const currentIndexRef = useRef(currentIndex);
-  const [key, setKey] = useState('');
+  const [key, setKey] = useState("");
   const [count, setCount] = useState(1);
 
   console.log(location.state);
@@ -97,15 +102,15 @@ function Swipe() {
     updateCurrentIndex(newIndex);
     await childRefs[newIndex].current.restoreCard();
   };
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || 'ArrowLeft' || 'ArrowLeft') {
-      if (e.key === 'ArrowRight') {
-        swipe('right');
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || "ArrowLeft" || "ArrowLeft") {
+      if (e.key === "ArrowRight") {
+        swipe("right");
         e.preventDefault();
-      } else if (e.key === 'ArrowLeft') {
-        swipe('left');
-      } else if (e.key === 'ArrowUp') {
-        navigate('/detail', { state: { id: 1 } });
+      } else if (e.key === "ArrowLeft") {
+        swipe("left");
+      } else if (e.key === "ArrowUp") {
+        navigate("/detail", { state: { id: 1 } });
       }
     }
     console.log(e.code);
@@ -147,14 +152,14 @@ function Swipe() {
         <div className=" grid lg:grid-cols-3 grid-cols-1 md:mx-20 mx-5 gap-5">
           <button
             className="shadow-lg sm:py-5 py-2 px-10 rounded-md button"
-            onClick={() => swipe('left')}
+            onClick={() => swipe("left")}
           >
             興味がない
           </button>
           <button
             className="shadow-lg lg:py-5 py-2 rounded-md button"
             onClick={() => {
-              navigate('/detail', { state: { id: 1 } });
+              navigate("/detail", { state: { id: 1 } });
             }}
           >
             今作る
@@ -162,7 +167,7 @@ function Swipe() {
           <button
             className="shadow-lg lg:py-5 py-2 rounded-md button"
             onClick={() => {
-              swipe('right');
+              swipe("right");
             }}
           >
             興味がある
