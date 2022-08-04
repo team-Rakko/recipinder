@@ -33,3 +33,9 @@ services:
     volumes:
       - ./db/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./db/mysql/init:/docker-entrypoint-initdb.d
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - api
