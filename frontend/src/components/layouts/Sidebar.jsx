@@ -1,10 +1,12 @@
 import House from '../../assets/images/house.svg';
 import Search from '../../assets/images/search.svg';
 import List from '../../assets/images/list.svg';
+import { useNavigate } from 'react-router-dom';
 import { Menu } from './Menu';
 import { useState, useEffect } from 'react';
 import '../../assets/css/menu.css';
 export const Sidebar = () => {
+  const navigate = useNavigate();
   const [hover, setHover] = useState(false);
   const [styles, setStyles] = useState('left-10');
   if (!window.location.pathname == '/recipes') {
@@ -35,7 +37,7 @@ export const Sidebar = () => {
         <img
           src={Search}
           alt=""
-          className="w-8 h-8"
+          className="w-8 h-8 hover:opacity-60"
           onMouseEnter={() => {
             setHover(true);
             setTimeout(() => {
@@ -45,8 +47,12 @@ export const Sidebar = () => {
             }, 40);
           }}
         />
-        <img src={House} alt="" className="w-8 h-8" />
-        <img src={List} alt="" className="w-8 h-8" />
+        <button onClick={() => navigate('/swipe')}>
+          <img src={House} alt="" className="w-8 h-8 hover:opacity-60" />
+        </button>
+        <button onClick={() => navigate('/recipes')}>
+          <img src={List} alt="" className="w-8 h-8 hover:opacity-60" />
+        </button>
       </div>
       {hover && <Menu hover={styles} />}
     </div>
