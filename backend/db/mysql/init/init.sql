@@ -30,8 +30,8 @@ CREATE TABLE IF NOT EXISTS `recipinder`.`recipis` (
     );
 
 CREATE TABLE IF NOT EXISTS `recipinder`.`recipe_user` (
-    `id` VARCHAR(64) NOT NULL COMMENT 'ID',
-    `recipe_id` VARCHAR(64) NOT NULL COMMENT 'レシピID',
+    `id` MEDIUMINT NOT NULL AUTO_INCREMENT COMMENT  'ID',
+    `recipe_id` integer NOT NULL COMMENT 'レシピID',
     `user_id` VARCHAR(64) NOT NULL COMMENT 'ユーザID',
     `like` integer COMMENT 'like判定',
     PRIMARY KEY (`id`)
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `recipinder`.`recipe_user` (
 
 CREATE TABLE IF NOT EXISTS `recipinder`.`review` (
     `id` VARCHAR(64) NOT NULL COMMENT 'ID',
-    `recipe_id` VARCHAR(64) NOT NULL COMMENT 'レシピID',
+    `recipe_id` integer COMMENT 'レシピID',
     `evaluation` integer NOT NULL COMMENT '評価',
     PRIMARY KEY (`id`)
     );
@@ -63,6 +63,7 @@ INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluatio
 INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("キャベツとチキンのトマトチーズ煮","キャベツは煮ることで甘味が増し、トマトの酸味ととても合います。鶏肉の旨味を吸ったキャベツが絶品です。","https://image.delishkitchen.tv/recipe/238630999993353322/1.webp?version=1639456561&w=600",500,"鶏もも肉,キャベツ,カットトマト缶,オリーブオイル,水,コンソメ,ピザ用チーズ",0,4);
 INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("じゃがいもと鶏肉の甘辛炒め","鶏肉のジューシーさとじゃがいものホクホク食感がマッチ。お弁当のおかずにもオススメ。今晩のおかずにいかがでしょうか！","https://image.delishkitchen.tv/recipe/209495084838683866/1.webp?version=1647223487&w=600",700,"鶏もも肉,じゃがいも,塩こしょう,サラダ油,細ねぎ(刻み)",0,5);
 INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("豚バラ大根のポン酢炒め","相性抜群の豚バラ肉と大根を組み合わせて、ポン酢でさっと炒めたスピードおかずを作りましょう。大根は薄切りにすることで味がしみ混みやすくなります。ごはんがもりもり進むこと間違いなし！","hhttps://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"豚バラ薄切り肉,大根,サラダ油",0,4);
+
 INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("基本の鶏ごぼう","シンプルな煮物料理をマスターして、今晩のおかずにしてみてください！旬の根菜などを入れるのもオススメです！","https://image.delishkitchen.tv/recipe/201083436671173713/1.webp?version=1618314542&w=600",400,"鶏もも肉,ごぼう,こんにゃく,しょうが,絹さや,酒,塩,サラダ油",0,5);
 INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("鶏もものオイスター漬け込み肉","オイスターソースを使った調味液で漬け込む事で、コクや旨味がアップします！長時間つけた後に香ばしく焼くことでしっとりジューシーに♪","https://image.delishkitchen.tv/recipe/203279414778134932/1.webp?version=1649985362&w=600",600,"鶏もも肉,塩こしょう,サラダ油",0,5);
 INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("鶏の角煮風","豚の角煮のようなこってりとした味わいに感動します♪味がしっかりとしてごはんが進むのでお弁当にも最適です♪","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏もも肉,ゆで卵,小松菜,サラダ油",0,5);
@@ -209,6 +210,25 @@ INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluatio
 INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("レタスとわかめのサラダ","簡単に作れて、しんなりレタスとわかめの食感が楽しい一品！ 人気のごま油とにんにく風味で食欲がわいてきます♪","https://image.delishkitchen.tv/recipe/174833053468721574/1.webp?version=1651029781&w=600",100,"レタス,わかめ（乾燥）,塩,こしょう,ごま油,おろしにんにく,白すりごま",3,2);
 INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("生わかめと玉ねぎのナムル","生わかめのジューシーな食感が楽しめるナムルの作り方をご紹介します。玉ねぎの食感と味わいがアクセントになり、やみつきになる一品です。シンプルな味付けなので、生わかめ本来の味わいをお楽しみください♪","https://image.delishkitchen.tv/recipe/297908498203672918/1.webp?version=1642998241&w=600",400,"わかめ,新玉ねぎ,塩,ごま油,おろしにんにく,白いりごま",3,3);
 INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("しらすとわかめのごま油炒め","ごま油で炒めることで風味豊かな味わいに仕上げました！濃いめの味付けでおつまみ、ご飯のお供にもおすすめな一品です。ぜひお試しください。","https://image.delishkitchen.tv/recipe/242696705693188481/1.webp?version=1652869802&w=600",300,"わかめ[塩蔵],しらす干し,白いりごま,ごま油,酒,しょうゆ,おろししょうが",3,2);
+
+
+
+-- recipe mylist
+-- recipe
+-- CREATE TABLE IF NOT EXISTS `recipinder`.`recipe_user` (
+--   `id` MEDIUMINT NOT NULL AUTO_INCREMENT COMMENT  'ID',
+--   `recipe_id` VARCHAR(64) NOT NULL COMMENT 'レシピID',
+--     `user_id` VARCHAR(64) NOT NULL COMMENT 'ユーザID',
+--     `like` integer COMMENT 'like判定',
+--     PRIMARY KEY (`id`)
+--     );
+
+
+INSERT INTO recipe_user (recipe_id,user_id) VALUES (1,1);
+INSERT INTO recipe_user (recipe_id,user_id) VALUES (2,1);
+INSERT INTO recipe_user (recipe_id,user_id) VALUES (3,1);
+INSERT INTO recipe_user (recipe_id,user_id) VALUES (4,1);
+INSERT INTO recipe_user (recipe_id,user_id) VALUES (5,1);
 
 -- INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/201390441034155089/1.webp?version=1639021741&w=600",500,"鶏モモ肉,卵",0,3);
 -- INSERT INTO recipis (recipe_name,description,url,place,ingredients,tag,evaluation) VALUES ("niku","食ってみな飛ぶぞ","https://image.delishkitchen.tv/recipe/233971595058610622/1.webp?version=1658215376&w=600",500,"鶏モモ肉,卵",0,3);
