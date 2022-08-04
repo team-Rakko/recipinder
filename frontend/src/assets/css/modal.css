@@ -1,3 +1,6 @@
+.req-animation {
+  transition: all 0.2s ease-in-out;
+}
 .modal {
   position: absolute;
   width: 50vw;
