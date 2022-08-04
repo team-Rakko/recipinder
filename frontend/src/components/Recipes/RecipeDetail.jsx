@@ -20,9 +20,13 @@ export const RecipeDetail = () => {
   });
 
   useEffect(() => {
+    // ローカルストレージから取得
+    const recipeId = Number(localStorage.getItem("recipeId"));
+
     const sendData = {
-      id: 1, // ローカルストレージから取得するようあとで変更
+      id: recipeId,
     };
+    console.log(sendData);
 
     recipeDetail(sendData).then((recipeData) => {
       const ingredients = recipeData.data.ingredients.split(",");
