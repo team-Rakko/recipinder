@@ -18,12 +18,20 @@ type RecipeDetailRequest struct {
 
 //レシピの詳細情報を格納する構造体
 type RecipeDetail struct {
-	RecipeName  string `json:"name"`
-	Description string `json:"description"`
-	Url         string `json:"url"`
-	Place       int    `json:"place"`
-	Ingredients string `json:"ingredients"`
-	Evaluation  int    `json:"evaluation"`
+	RecipeName  string    `json:"name"`
+	Description string    `json:"description"`
+	Url         string    `json:"url"`
+	Place       int       `json:"place"`
+	Ingredients string    `json:"ingredients"`
+	Evaluation  int       `json:"evaluation"`
+	Kcal        int       `json:"kcal"`
+	Time        int       `json:"time"`
+	Process     []Process `json:"Process"`
+}
+
+type Process struct {
+	Exp    string `json:"explanation"`
+	Number string `json:"number"`
 }
 
 //CREATE TABLE IF NOT EXISTS `recipinder`.`recipis` (
