@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import TinderCard from 'react-tinder-card';
 import '../assets/css/swipe.css';
 import { ConfirmationModal } from './ConfirmationModal';
@@ -44,6 +44,7 @@ function Swipe() {
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState();
   const currentIndexRef = useRef(currentIndex);
+  const [key, setKey] = useState('');
 
   const childRefs = useMemo(
     () =>
@@ -69,7 +70,7 @@ function Swipe() {
   };
 
   const outOfFrame = (name, idx) => {
-    console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
+    // console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
     // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
     // TODO: when quickly swipe and restore multiple times the same card,
@@ -90,6 +91,25 @@ function Swipe() {
     updateCurrentIndex(newIndex);
     await childRefs[newIndex].current.restoreCard();
   };
+
+  const windowKeyEvent = () => {
+    window.addEventListener('keydown', (e) => {
+      setKey(e.code);
+      console.log(key);
+    });
+    if (key === 'ArrowRight') {
+      setModal(true);
+    } else if (key === 'ArrowLeft') {
+      swipe('left');
+    } else if (key === 'ArrowUp') {
+      swipe('right');
+    }
+    setKey('');
+  };
+  useEffect(() => {
+    windowKeyEvent();
+    console.log('key変わった！！');
+  }, [key]);
 
   return (
     <div>
@@ -136,15 +156,15 @@ function Swipe() {
             </button>
             <button
               className="shadow-lg lg:py-5 py-2"
-              onClick={() => swipe('right')}
+              onClick={() => {
+                swipe('right');
+              }}
             >
               リストに追加する
             </button>
             <button
               className="shadow-lg lg:py-5 py-2"
-              onClick={() => {
-                setModal(true);
-              }}
+              onClick={() => setModal(true)}
             >
               作る
             </button>
