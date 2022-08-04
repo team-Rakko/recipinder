@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `recipinder`.`review` (
 INSERT INTO users (id,name) VALUES ("1","rakko1");
 INSERT INTO users (id,name) VALUES ("2","rakko2");
 
-
+INSERT INTO users (id,name) VALUES ("m4fK9RgttyRL8KZTd5ZEy7Ylqs03","長谷川祥士");
 
 -- recipe
 -- 肉
