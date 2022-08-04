@@ -13,9 +13,13 @@ export const Recipes = () => {
       user_id: userInfo.id, // conTextからuserIdを取得するようにする。多分バックエンドでuser_idをintで扱ってるからstringにしてもらう
     };
 
-    getlist(sendData).then((myListData) => {
-      setMyList(myListData.data);
-    });
+    getlist(sendData)
+      .then((myListData) => {
+        setMyList(myListData.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
 
   return (

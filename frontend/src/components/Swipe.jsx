@@ -1,9 +1,8 @@
 import React, { useState, useMemo, useRef, useEffect, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TinderCard from "react-tinder-card";
 import "../assets/css/swipe.css";
 import { ConfirmationModal } from "./ConfirmationModal";
-import { recipeList } from "../lib/api.jsx";
 import { UserContext } from "../App";
 
 var data = {
@@ -27,7 +26,7 @@ function Swipe() {
     console.log(userInfo.type);
   }, [userInfo.type]);
 
-  const location = useLocation();
+  // const location = useLocation();
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState();
@@ -51,7 +50,7 @@ function Swipe() {
         id: Number(lastId),
       };
     }
-    var obj = fetch("http://118.27.15.162/recipe/list", {
+    var obj = fetch("https://recepiender.home.k1h.dev/recipe/list", {
       method: "POST",
       body: JSON.stringify(data),
     }).then((res) => {
@@ -122,7 +121,7 @@ function Swipe() {
     updateCurrentIndex(newIndex);
     await childRefs[newIndex].current.restoreCard();
   };
-  
+
   window.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight" || "ArrowLeft" || "ArrowLeft") {
       if (e.key === "ArrowRight") {
@@ -133,24 +132,13 @@ function Swipe() {
       } else if (e.key === "ArrowUp") {
         navigate("/detail", { state: { id: 1 } });
       }
-      if (key == e.code) {
-        setKey('');
-        setKey(e.code);
-      } else {
-        setKey(() => e.code);
-      }
-    });
-  };
-  useEffect(() => {
-    windowKeyEvent();
-    if (key === 'ArrowRight') {
-      swipe('right');
-    } else if (key === 'ArrowLeft') {
-      swipe('left');
-    } else if (key === 'ArrowUp') {
-      navigate('/detail', { state: { id: 1 } });
     }
-}, [key]);
+    if (key == e.code) {
+      setKey("");
+      setKey(e.code);
+    } else {
+      setKey(() => e.code);
+    }
   });
 
   return (
