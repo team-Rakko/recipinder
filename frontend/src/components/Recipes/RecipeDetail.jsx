@@ -1,21 +1,21 @@
-import { useLocalStorage } from "../../hooks/useLocalStorage.js";
-import { useState } from "react";
-import { useEffect } from "react";
-import "../../assets/css/recipes/recipeDetail.css";
-import { recipeDetail } from "../../lib/api";
-import notImg from "../../assets/images/notImg.jpeg";
+import { useLocalStorage } from '../../hooks/useLocalStorage.js';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import '../../assets/css/recipes/recipeDetail.css';
+import { recipeDetail } from '../../lib/api';
+import notImg from '../../assets/images/notImg.jpeg';
 
 export const RecipeDetail = () => {
   // recipe情報はこのページに遷移するときにlocalstorageに保存してlocalstorageから参照する
   //   ここからテスト用
   // const [recipe, setRecipe] = useLocalStorage("name", "initialValue");
   const [recipe, setRecipe] = useState({
-    name: "not found",
-    description: "",
+    name: 'not found',
+    description: '',
     url: notImg, // 灰色の画像をセット
-    place: "0",
-    ingredients: ["料理が見つかりませんでした"],
-    evaluation: "0",
+    place: '0',
+    ingredients: ['料理が見つかりませんでした'],
+    evaluation: '0',
     process: [],
   });
 
@@ -29,7 +29,7 @@ export const RecipeDetail = () => {
     console.log(sendData);
 
     recipeDetail(sendData).then((recipeData) => {
-      const ingredients = recipeData.data.ingredients.split(",");
+      const ingredients = recipeData.data.ingredients.split(',');
 
       const process = recipeData.data.Process;
       const prosessList = process.map((value) => {
@@ -51,7 +51,7 @@ export const RecipeDetail = () => {
 
   return (
     <div className="back-gradation-for-detail py-10">
-      <div className=" bg-white place-items-center justify-items-center shadow-lg rounded-md lg:mx-52 mx-10">
+      <div className=" bg-white place-items-center justify-items-center shadow-lg rounded-md sm:mx-10 lg:mx-52 mx-1">
         <div className="grid md:grid-cols-2 grid-cols-1 place-items-center justify-items-center">
           <div>
             <img
@@ -62,9 +62,11 @@ export const RecipeDetail = () => {
           </div>
           <div>
             <p className="flex justify-center text-lg py-5">材料</p>
-            {recipe.ingredients.map((value) => (
-              <p>・ {value}</p>
-            ))}
+            <div className="grid grid-cols-2 gap-3">
+              {recipe.ingredients.map((value) => (
+                <p>・ {value}</p>
+              ))}
+            </div>
           </div>
         </div>
         <div className="border-y-4 py-3 my-3">
