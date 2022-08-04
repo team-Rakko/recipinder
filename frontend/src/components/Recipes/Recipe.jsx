@@ -4,9 +4,8 @@ export const Recipe = ({ data }) => {
   const navigate = useNavigate();
 
   const showDetail = () => {
-    //ローカルストレージにレシピidを保存する処理を書く
-    console.log(data.recipe_id);
-    /////////
+    // ローカルストレージへレシピのidを保存
+    localStorage.setItem("recipeId", data.recipe_id);
 
     // 詳細画面に遷移
     navigate("/detail");
