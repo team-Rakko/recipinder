@@ -36,6 +36,7 @@ function Login() {
       if (user) {
         const path = userInfo.path;
         const type = userInfo.type;
+        const viewId = userInfo.viewId;
         const uid = user.uid;
         const userName = user.displayName;
         const userData = {
@@ -44,6 +45,7 @@ function Login() {
           login: true,
           path: path,
           type: type,
+          viewId: viewId,
         };
 
         setUserInfo(userData); // ユーザー情報を保持

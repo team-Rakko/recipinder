@@ -12,6 +12,7 @@ function App() {
     login: false,
     path: "/swipe",
     type: 0,
+    viewId: 1,
   });
   const contextValue = { userInfo, setUserInfo };
 

@@ -27,7 +27,7 @@ function Swipe() {
   useEffect(() => {
     data = {
       tag: userInfo.type,
-      id: 1,
+      id: userInfo.viewId,
     };
     var obj = fetch("https://recepiender.home.k1h.dev/recipe/list", {
       method: "POST",
@@ -70,6 +70,11 @@ function Swipe() {
 
   useEffect(() => {
     if (currentIndex != undefined && currentIndex > 1) {
+      console.log(db.data[currentIndex].id);
+      setUserInfo((userInfo) => ({
+        ...userInfo,
+        viewId: Number(db.data[currentIndex].id) - 1,
+      }));
       return;
     } else if (currentIndex == 1) {
       let lastId = db.data[0].id;
