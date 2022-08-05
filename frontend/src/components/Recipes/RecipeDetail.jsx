@@ -72,7 +72,7 @@ export const RecipeDetail = () => {
         </div>
         <div className="border-y-4 py-3 my-3">
           <p className="flex justify-center text-2xl">{recipe.name}</p>
-          <p className="flex justify-center">{recipe.place}円</p>
+          <p className="flex justify-center text-2xl">{recipe.place}円</p>
         </div>
 
         <div className="grid md:grid-cols-3 grid-cols-1 gap-5 px-10">

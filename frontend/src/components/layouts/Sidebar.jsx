@@ -48,7 +48,7 @@ export const Sidebar = () => {
             }, 40);
           }}
         />
-        <button onClick={() => navigate("/swipe")}>
+        <button onClick={() => navigate("/swipes")}>
           <img src={House} alt="" className="w-8 h-8 hover:opacity-60" />
         </button>
         <button onClick={() => navigate("/recipes")}>

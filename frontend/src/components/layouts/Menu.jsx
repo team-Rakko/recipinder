@@ -25,7 +25,7 @@ export const Menu = ({ hover }) => {
       ...userInfo,
       type: typeId,
     }));
-    navigate("/swipe");
+    navigate("/swipes");
   };
   // const [items, setItems] = useState(postSwipeRecipe(0));
 

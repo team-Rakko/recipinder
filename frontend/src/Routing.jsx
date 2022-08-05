@@ -31,7 +31,7 @@ function Routing() {
         <Route index element={<Sidebar />} />
         <Route path="/" element={<Sidebar />}></Route>
         <Route path="test" element={<Sidebar />}></Route>
-        <Route path="swipe" element={<Sidebar />}></Route>
+        <Route path="swipes" element={<Sidebar />}></Route>
         <Route path="recipes" element={<Sidebar />}></Route>
         <Route path="detail" element={<Sidebar />}></Route>
       </Routes>
@@ -41,7 +41,7 @@ function Routing() {
         <Route path="/" element={<Home />}></Route>
         <Route path="test" element={<Test />}></Route>
         <Route path="login" element={<Login />}></Route>
-        <Route path="swipe" element={<Swipe />}></Route>
+        <Route path="swipes" element={<Swipe />}></Route>
         <Route path="recipes" element={<Recipes />}></Route>
         <Route path="detail" element={<RecipeDetail />}></Route>
       </Routes>
