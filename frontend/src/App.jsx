@@ -10,7 +10,7 @@ function App() {
     userName: "",
     uid: "",
     login: false,
-    path: "/swipe",
+    path: "/swipes",
     type: 0,
     viewId: 1,
   });
