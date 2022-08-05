@@ -51,7 +51,7 @@
   .swiper-container {
     position: absolute;
     width: 90vw;
-    top: 50%;
+    top: 100%;
     left: 50%;
     transform: translate(-50%, -30%);
   }

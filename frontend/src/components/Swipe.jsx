@@ -4,26 +4,32 @@ import TinderCard from "react-tinder-card";
 import "../assets/css/swipe.css";
 import { ConfirmationModal } from "./ConfirmationModal";
 import { UserContext } from "../App";
-
-var data = {
-  tag: 0,
-  id: 1,
-};
-// const sendRecipeList = async (data) => {
-//   try {
-//     const res = await recipeList(data);
-//     if (res.status === 200) {
-//     } else {
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+import { list } from "../lib/api";
 
 function Swipe() {
+  var data = {
+    tag: 0,
+    id: 1,
+  };
   const { userInfo, setUserInfo } = useContext(UserContext);
+  // 興味ありの処理
+  const addMyList = (recipeId) => {
+    const sendData = {
+      user_id: userInfo.id,
+      recipe_id: Number(recipeId),
+    };
+    console.log(sendData);
+
+    list(sendData).catch((e) => {
+      alert("エラーが発生しマイリストに追加できませんでした。");
+    });
+  };
+
   useEffect(() => {
-    console.log(userInfo.type);
+    data = {
+      tag: userInfo.type,
+      id: 1,
+    };
   }, [userInfo.type]);
 
   // const location = useLocation();
@@ -142,9 +148,9 @@ function Swipe() {
   });
 
   return (
-    <div>
+    <div className="">
       <div className="back-gradation absolute top-0 right-0"></div>
-      <div className="shadow-2xl pb-10 absolute bg-white swiper-container rounded-md">
+      <div className="shadow-2xl pb-10 absolute top-96 bg-white swiper-container rounded-md mt-5">
         {modal && <ConfirmationModal />}
         <div className="grid grid-cols-1 relative sm:my-40 my-24">
           <div className="">
@@ -162,7 +168,7 @@ function Swipe() {
                     <img
                       src={character.url}
                       alt=""
-                      className="w-full h-60 rounded-md flex justify-center"
+                      className="w-full h-90 rounded-md flex justify-center mt-4"
                     />
 
                     <p className="break-words w-full py-10 text-center text-xl bg-white rounded-md">
@@ -184,7 +190,9 @@ function Swipe() {
           <button
             className="shadow-lg lg:py-5 py-2 rounded-md button"
             onClick={() => {
-              navigate("/detail", { state: { id: 1 } });
+              // console.log(db.data[currentIndex].id);
+              localStorage.setItem("recipeId", db.data[currentIndex].id);
+              navigate("/detail");
             }}
           >
             今作る
@@ -192,6 +200,7 @@ function Swipe() {
           <button
             className="shadow-lg lg:py-5 py-2 rounded-md button"
             onClick={() => {
+              addMyList(db.data[currentIndex].id);
               swipe("right");
             }}
           >

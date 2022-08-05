@@ -1,35 +1,36 @@
-import { useLocalStorage } from '../../hooks/useLocalStorage.js';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import '../../assets/css/recipes/recipeDetail.css';
-import { recipeDetail } from '../../lib/api';
-import notImg from '../../assets/images/notImg.jpeg';
+import { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "../../assets/css/recipes/recipeDetail.css";
+import { recipeDetail } from "../../lib/api";
+import notImg from "../../assets/images/notImg.jpeg";
 
 export const RecipeDetail = () => {
-  // recipe情報はこのページに遷移するときにlocalstorageに保存してlocalstorageから参照する
-  //   ここからテスト用
-  // const [recipe, setRecipe] = useLocalStorage("name", "initialValue");
+  const navigate = useNavigate();
+
   const [recipe, setRecipe] = useState({
-    name: 'not found',
-    description: '',
+    name: "not found",
+    description: "",
     url: notImg, // 灰色の画像をセット
-    place: '0',
-    ingredients: ['料理が見つかりませんでした'],
-    evaluation: '0',
+    place: "0",
+    ingredients: ["料理が見つかりませんでした"],
+    evaluation: "0",
     process: [],
   });
 
   useEffect(() => {
     // ローカルストレージから取得
     const recipeId = Number(localStorage.getItem("recipeId"));
+    if (!recipeId) {
+      navigate("/swipe");
+    }
 
     const sendData = {
       id: recipeId,
     };
-    console.log(sendData);
 
     recipeDetail(sendData).then((recipeData) => {
-      const ingredients = recipeData.data.ingredients.split(',');
+      const ingredients = recipeData.data.ingredients.split(",");
 
       const process = recipeData.data.Process;
       const prosessList = process.map((value) => {
