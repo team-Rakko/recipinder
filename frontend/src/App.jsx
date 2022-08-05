@@ -9,8 +9,8 @@ function App() {
   const [userInfo, setUserInfo] = useState({
     userName: "",
     uid: "",
-    login: true,
-    path: "/swipe2",
+    login: false,
+    path: "/swipe",
   });
   const contextValue = { userInfo, setUserInfo };
 

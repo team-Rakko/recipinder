@@ -6,7 +6,7 @@ const options = {
 
 const client = axios.create(
   {
-    baseURL: "http://118.27.15.162/",
+    baseURL: "https://recepiender.home.k1h.dev/",
   },
   options
 );

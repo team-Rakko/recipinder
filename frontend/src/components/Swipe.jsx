@@ -49,7 +49,8 @@ function Swipe() {
         id: Number(lastId),
       };
     }
-    var obj = fetch("http://118.27.15.162/recipe/list", {
+
+    var obj = fetch("https://recepiender.home.k1h.dev/recipe/list", {
       method: "POST",
       body: JSON.stringify(data),
     }).then((res) => {
@@ -120,36 +121,37 @@ function Swipe() {
     updateCurrentIndex(newIndex);
     await childRefs[newIndex].current.restoreCard();
   };
-  
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight" || "ArrowLeft" || "ArrowLeft") {
-      if (e.key === "ArrowRight") {
-        swipe("right");
-        e.preventDefault();
-      } else if (e.key === "ArrowLeft") {
-        swipe("left");
-      } else if (e.key === "ArrowUp") {
-        navigate("/detail", { state: { id: 1 } });
-      }
-      if (key == e.code) {
-        setKey('');
-        setKey(e.code);
-      } else {
-        setKey(() => e.code);
+
+  const windowKeyEvent = () => {
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || "ArrowLeft" || "ArrowLeft") {
+        if (e.key === "ArrowRight") {
+          swipe("right");
+          e.preventDefault();
+        } else if (e.key === "ArrowLeft") {
+          swipe("left");
+        } else if (e.key === "ArrowUp") {
+          navigate("/detail", { state: { id: 1 } });
+        }
+        if (key == e.code) {
+          setKey("");
+          setKey(e.code);
+        } else {
+          setKey(() => e.code);
+        }
       }
     });
   };
   useEffect(() => {
     windowKeyEvent();
-    if (key === 'ArrowRight') {
-      swipe('right');
-    } else if (key === 'ArrowLeft') {
-      swipe('left');
-    } else if (key === 'ArrowUp') {
-      navigate('/detail', { state: { id: 1 } });
+    if (key === "ArrowRight") {
+      swipe("right");
+    } else if (key === "ArrowLeft") {
+      swipe("left");
+    } else if (key === "ArrowUp") {
+      navigate("/detail", { state: { id: 1 } });
     }
-}, [key]);
-  });
+  }, [key]);
 
   return (
     <div>
@@ -167,6 +169,7 @@ function Swipe() {
                   outOfFrame(character.name, index);
                 }}
               >
+                {console.log(character)}
                 <div className="absolute swiper w-96 h-auto">
                   <div className="my-1 mx-auto">
                     <img
