@@ -1,10 +1,9 @@
-import React, { useState, useMemo, useRef, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import TinderCard from "react-tinder-card";
-import "../assets/css/swipe.css";
-import { ConfirmationModal } from "./ConfirmationModal";
-import { UserContext } from "../App";
-import { list } from "../lib/api";
+import React, { useState, useMemo, useRef, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import TinderCard from 'react-tinder-card';
+import '../assets/css/swipe.css';
+import { UserContext } from '../App';
+import { list } from '../lib/api';
 
 function Swipe() {
   var data = {
@@ -20,7 +19,7 @@ function Swipe() {
     };
 
     list(sendData).catch((e) => {
-      alert("エラーが発生しマイリストに追加できませんでした。");
+      alert('エラーが発生しマイリストに追加できませんでした。');
     });
   };
 
@@ -29,8 +28,8 @@ function Swipe() {
       tag: userInfo.type,
       id: userInfo.viewId,
     };
-    var obj = fetch("https://recepiender.home.k1h.dev/recipe/list", {
-      method: "POST",
+    var obj = fetch('https://recepiender.home.k1h.dev/recipe/list', {
+      method: 'POST',
       body: JSON.stringify(data),
     }).then((res) => {
       return res.json();
@@ -62,7 +61,7 @@ function Swipe() {
   const [lastDirection, setLastDirection] = useState();
   const currentIndexRef = useRef(currentIndex);
 
-  const [key, setKey] = useState("");
+  const [key, setKey] = useState('');
   const [count, setCount] = useState(1);
   const [db, setDb] = useState({ data: [] });
   var newCurrentIndex = 10;
@@ -85,8 +84,8 @@ function Swipe() {
       };
     }
 
-    var obj = fetch("https://recepiender.home.k1h.dev/recipe/list", {
-      method: "POST",
+    var obj = fetch('https://recepiender.home.k1h.dev/recipe/list', {
+      method: 'POST',
       body: JSON.stringify(data),
     }).then((res) => {
       return res.json();
@@ -145,19 +144,19 @@ function Swipe() {
     await childRefs[newIndex].current.restoreCard();
   };
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight" || "ArrowLeft" || "ArrowLeft") {
-      if (e.key === "ArrowRight") {
-        swipe("right");
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || 'ArrowLeft' || 'ArrowLeft') {
+      if (e.key === 'ArrowRight') {
+        swipe('right');
         e.preventDefault();
-      } else if (e.key === "ArrowLeft") {
-        swipe("left");
-      } else if (e.key === "ArrowUp") {
-        navigate("/detail", { state: { id: 1 } });
+      } else if (e.key === 'ArrowLeft') {
+        swipe('left');
+      } else if (e.key === 'ArrowUp') {
+        navigate('/detail', { state: { id: 1 } });
       }
     }
     if (key == e.code) {
-      setKey("");
+      setKey('');
       setKey(e.code);
     } else {
       setKey(() => e.code);
@@ -168,7 +167,6 @@ function Swipe() {
     <div className="">
       <div className="back-gradation absolute top-0 right-0"></div>
       <div className="shadow-2xl pb-10 absolute top-96 bg-white swiper-container rounded-md mt-5">
-        {modal && <ConfirmationModal />}
         <div className="grid grid-cols-1 relative sm:my-40 my-24">
           <div className="">
             {db.data.map((character, index) => (
@@ -177,7 +175,7 @@ function Swipe() {
                 key={character.id}
                 onSwipe={(dir) => {
                   swiped(dir, character.name, index);
-                  if (dir == "right") {
+                  if (dir == 'right') {
                     addMyList(db.data[index].id); //マイリストに追加
                   }
                 }}
@@ -185,15 +183,16 @@ function Swipe() {
                   outOfFrame(character.name, index);
                 }}
               >
-                <div className="absolute swiper w-96 h-auto">
+                {console.log(character)}
+                <div className="absolute swiper h-auto">
                   <div className="my-1 mx-auto">
                     <img
                       src={character.url}
                       alt=""
-                      className="w-full h-90 rounded-md flex justify-center mt-4"
+                      className="md:h-full w-full text-center h-40 md:object-contain object-cover rounded-md flex justify-center mt-10"
                     />
 
-                    <p className="break-words w-full py-10 text-center text-xl bg-white rounded-md">
+                    <p className="break-words w-full sm:py-10 py-5 text-center sm:text-xl texl-md bg-white rounded-md">
                       {character.name}
                     </p>
                   </div>
@@ -202,18 +201,18 @@ function Swipe() {
             ))}
           </div>
         </div>
-        <div className=" grid lg:grid-cols-3 grid-cols-1 md:mx-20 mx-5 gap-5">
+        <div className=" grid lg:grid-cols-3 grid-cols-1 md:mx-20 sm:pt-10 pt-20 mx-5 gap-5">
           <button
             className="shadow-lg sm:py-5 py-2 px-10 rounded-md button"
-            onClick={() => swipe("left")}
+            onClick={() => swipe('left')}
           >
             興味がない
           </button>
           <button
             className="shadow-lg lg:py-5 py-2 rounded-md button"
             onClick={() => {
-              localStorage.setItem("recipeId", db.data[currentIndex].id);
-              navigate("/detail");
+              localStorage.setItem('recipeId', db.data[currentIndex].id);
+              navigate('/detail');
             }}
           >
             今作る
@@ -221,7 +220,7 @@ function Swipe() {
           <button
             className="shadow-lg lg:py-5 py-2 rounded-md button"
             onClick={() => {
-              swipe("right");
+              swipe('right');
             }}
           >
             興味がある
