@@ -22,7 +22,7 @@ export const RecipeDetail = () => {
     // ローカルストレージから取得
     const recipeId = Number(localStorage.getItem("recipeId"));
     if (!recipeId) {
-      navigate("/swipe");
+      navigate("/swipes");
     }
 
     const sendData = {
