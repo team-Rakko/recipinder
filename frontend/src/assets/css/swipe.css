@@ -9,7 +9,7 @@
   width: 70vw;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -30%);
 }
 
 .back-gradation {
@@ -53,7 +53,7 @@
     width: 90vw;
     top: 100%;
     left: 50%;
-    transform: translate(-50%, -30%);
+    transform: translate(-50%, -60%);
   }
   .back-gradation {
     background: linear-gradient(135deg, red, orange);

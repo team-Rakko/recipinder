@@ -1,28 +1,28 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "../../assets/css/recipes/recipeDetail.css";
-import { recipeDetail } from "../../lib/api";
-import notImg from "../../assets/images/notImg.jpeg";
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../../assets/css/recipes/recipeDetail.css';
+import { recipeDetail } from '../../lib/api';
+import notImg from '../../assets/images/notImg.jpeg';
 
 export const RecipeDetail = () => {
   const navigate = useNavigate();
 
   const [recipe, setRecipe] = useState({
-    name: "not found",
-    description: "",
+    name: 'not found',
+    description: '',
     url: notImg, // 灰色の画像をセット
-    place: "0",
-    ingredients: ["料理が見つかりませんでした"],
-    evaluation: "0",
+    place: '0',
+    ingredients: ['料理が見つかりませんでした'],
+    evaluation: '0',
     process: [],
   });
 
   useEffect(() => {
     // ローカルストレージから取得
-    const recipeId = Number(localStorage.getItem("recipeId"));
+    const recipeId = Number(localStorage.getItem('recipeId'));
     if (!recipeId) {
-      navigate("/swipe");
+      navigate('/swipe');
     }
 
     const sendData = {
@@ -30,7 +30,7 @@ export const RecipeDetail = () => {
     };
 
     recipeDetail(sendData).then((recipeData) => {
-      const ingredients = recipeData.data.ingredients.split(",");
+      const ingredients = recipeData.data.ingredients.split(',');
 
       const process = recipeData.data.Process;
       const prosessList = process.map((value) => {
@@ -72,7 +72,7 @@ export const RecipeDetail = () => {
         </div>
         <div className="border-y-4 py-3 my-3">
           <p className="flex justify-center text-2xl">{recipe.name}</p>
-          <p className="flex justify-center">{recipe.place}円</p>
+          <p className="flex justify-center text-2xl">{recipe.place}円</p>
         </div>
 
         <div className="grid md:grid-cols-3 grid-cols-1 gap-5 px-10">
