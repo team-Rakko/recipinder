@@ -180,6 +180,7 @@ function Swipe() {
                   outOfFrame(character.name, index);
                 }}
               >
+                {console.log(character)}
                 <div className="absolute swiper w-96 h-auto">
                   <div className="my-1 mx-auto">
                     <img
