@@ -127,10 +127,6 @@ function Swipe() {
   };
 
   const swipe = async (dir) => {
-    if (dir == "right") {
-      addMyList(db.data[currentIndex].id); //マイリストに追加
-    }
-
     if (canSwipe && currentIndex < db.data.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
