@@ -1,9 +1,9 @@
-import React, { useState, useMemo, useRef, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import TinderCard from 'react-tinder-card';
-import '../assets/css/swipe.css';
-import { UserContext } from '../App';
-import { list } from '../lib/api';
+import React, { useState, useMemo, useRef, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import TinderCard from "react-tinder-card";
+import "../assets/css/swipe.css";
+import { UserContext } from "../App";
+import { list } from "../lib/api";
 
 function Swipe() {
   var data = {
@@ -19,7 +19,7 @@ function Swipe() {
     };
 
     list(sendData).catch((e) => {
-      alert('エラーが発生しマイリストに追加できませんでした。');
+      alert("エラーが発生しマイリストに追加できませんでした。");
     });
   };
 
@@ -28,8 +28,8 @@ function Swipe() {
       tag: userInfo.type,
       id: userInfo.viewId,
     };
-    var obj = fetch('https://recepiender.home.k1h.dev/recipe/list', {
-      method: 'POST',
+    var obj = fetch("https://recepiender.home.k1h.dev/recipe/list", {
+      method: "POST",
       body: JSON.stringify(data),
     }).then((res) => {
       return res.json();
@@ -61,7 +61,7 @@ function Swipe() {
   const [lastDirection, setLastDirection] = useState();
   const currentIndexRef = useRef(currentIndex);
 
-  const [key, setKey] = useState('');
+  const [key, setKey] = useState("");
   const [count, setCount] = useState(1);
   const [db, setDb] = useState({ data: [] });
   var newCurrentIndex = 10;
@@ -84,8 +84,8 @@ function Swipe() {
       };
     }
 
-    var obj = fetch('https://recepiender.home.k1h.dev/recipe/list', {
-      method: 'POST',
+    var obj = fetch("https://recepiender.home.k1h.dev/recipe/list", {
+      method: "POST",
       body: JSON.stringify(data),
     }).then((res) => {
       return res.json();
@@ -144,19 +144,19 @@ function Swipe() {
     await childRefs[newIndex].current.restoreCard();
   };
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || 'ArrowLeft' || 'ArrowLeft') {
-      if (e.key === 'ArrowRight') {
-        swipe('right');
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || "ArrowLeft" || "ArrowLeft") {
+      if (e.key === "ArrowRight") {
+        swipe("right");
         e.preventDefault();
-      } else if (e.key === 'ArrowLeft') {
-        swipe('left');
-      } else if (e.key === 'ArrowUp') {
-        navigate('/detail', { state: { id: 1 } });
+      } else if (e.key === "ArrowLeft") {
+        swipe("left");
+      } else if (e.key === "ArrowUp") {
+        navigate("/detail", { state: { id: 1 } });
       }
     }
     if (key == e.code) {
-      setKey('');
+      setKey("");
       setKey(e.code);
     } else {
       setKey(() => e.code);
@@ -175,7 +175,7 @@ function Swipe() {
                 key={character.id}
                 onSwipe={(dir) => {
                   swiped(dir, character.name, index);
-                  if (dir == 'right') {
+                  if (dir == "right") {
                     addMyList(db.data[index].id); //マイリストに追加
                   }
                 }}
@@ -204,15 +204,15 @@ function Swipe() {
         <div className=" grid lg:grid-cols-3 grid-cols-1 md:mx-20 sm:pt-10 pt-20 mx-5 gap-5">
           <button
             className="shadow-lg sm:py-5 py-2 px-10 rounded-md button"
-            onClick={() => swipe('left')}
+            onClick={() => swipe("left")}
           >
             興味がない
           </button>
           <button
             className="shadow-lg lg:py-5 py-2 rounded-md button"
             onClick={() => {
-              localStorage.setItem('recipeId', db.data[currentIndex].id);
-              navigate('/detail');
+              localStorage.setItem("recipeId", db.data[currentIndex].id);
+              navigate("/detail");
             }}
           >
             今作る
@@ -220,7 +220,7 @@ function Swipe() {
           <button
             className="shadow-lg lg:py-5 py-2 rounded-md button"
             onClick={() => {
-              swipe('right');
+              swipe("right");
             }}
           >
             興味がある

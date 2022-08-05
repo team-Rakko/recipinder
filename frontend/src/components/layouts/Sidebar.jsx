@@ -9,21 +9,6 @@ export const Sidebar = () => {
   const navigate = useNavigate();
   const [hover, setHover] = useState(false);
   const [styles, setStyles] = useState("left-10");
-  // if (window.location.pathname != "/recipes") {
-  //   useEffect(() => {
-  //     console.log("aa");
-  //     setHover(true);
-  //     setStyles(
-  //       "left-0 sm:left-14 sm:top-5 top-20 sm:w-3/4 w-full opacity-100"
-  //     );
-  //     setTimeout(() => {
-  //       setStyles("left-10 opacity-0 sm:w-3/4 w-full");
-  //       setTimeout(() => {
-  //         setHover(false);
-  //       }, 4000);
-  //     }, 2000);
-  //   }, []);
-  // }
 
   return (
     <div
@@ -48,7 +33,7 @@ export const Sidebar = () => {
             }, 40);
           }}
         />
-        <button onClick={() => navigate("/swipe")}>
+        <button onClick={() => navigate("/swipes")}>
           <img src={House} alt="" className="w-8 h-8 hover:opacity-60" />
         </button>
         <button onClick={() => navigate("/recipes")}>

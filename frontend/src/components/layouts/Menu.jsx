@@ -10,22 +10,14 @@ import { UserContext } from "../../App";
 export const Menu = ({ hover }) => {
   const { userInfo, setUserInfo } = useContext(UserContext);
   const navigate = useNavigate();
-  // const postSwipeRecipe = (postId) => {
-  //   const datas = recipeList({
-  //     tag: postId,
-  //     id: 0,
-  //   }).then(function (response) {
-  //     return response.data;
-  //   });
-  //   return datas;
-  // };
+
   const selectType = (typeId) => {
     // conTextのtypeのみ変更
     setUserInfo((userInfo) => ({
       ...userInfo,
       type: typeId,
     }));
-    navigate("/swipe");
+    navigate("/swipes");
   };
   // const [items, setItems] = useState(postSwipeRecipe(0));
 
