@@ -15,7 +15,10 @@ export const Recipes = () => {
 
     getlist(sendData)
       .then((myListData) => {
-        setMyList(myListData.data);
+        const uniqueData = myListData.data.filter((e, index, self) => {
+          return self.findIndex((el) => el.recipe_id === e.recipe_id) === index;
+        });
+        setMyList(uniqueData);
       })
       .catch((e) => {
         console.log(e);
