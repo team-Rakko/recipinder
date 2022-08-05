@@ -56,7 +56,7 @@ export const Menu = ({ hover }) => {
           </button>
           <button
             onClick={() => {
-              selectType(3);
+              selectType(1);
             }}
             className=" flex items-center justify-center hover:opacity-60"
           >
@@ -65,7 +65,7 @@ export const Menu = ({ hover }) => {
           </button>
           <button
             onClick={() => {
-              selectType(1);
+              selectType(3);
             }}
             className=" flex items-center justify-center hover:opacity-60"
           >

@@ -18,7 +18,6 @@ function Swipe() {
       user_id: userInfo.id,
       recipe_id: Number(recipeId),
     };
-    console.log(sendData);
 
     list(sendData).catch((e) => {
       alert("エラーが発生しマイリストに追加できませんでした。");
@@ -30,6 +29,30 @@ function Swipe() {
       tag: userInfo.type,
       id: 1,
     };
+    var obj = fetch("https://recepiender.home.k1h.dev/recipe/list", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }).then((res) => {
+      return res.json();
+    });
+    obj
+      .then((json) => {
+        if (prevData != null) {
+          json = json.slice(0, -2);
+          json = prevData.reverse().concat(json);
+        }
+
+        json = json.reverse();
+        newCurrentIndex = json.length;
+        setDb((preSetting) => ({
+          ...preSetting,
+          data: json,
+        }));
+        setCurrentIndex(newCurrentIndex - 1);
+      })
+      .catch((err) => console.log(err));
+
+    console.log(data);
   }, [userInfo.type]);
 
   // const location = useLocation();
@@ -56,6 +79,7 @@ function Swipe() {
         id: Number(lastId),
       };
     }
+
     var obj = fetch("https://recepiender.home.k1h.dev/recipe/list", {
       method: "POST",
       body: JSON.stringify(data),
@@ -101,21 +125,13 @@ function Swipe() {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
   };
-  // 画面外に出た時にこれが実行されるのはラグがある
-  const outOfFrame = (name, idx) => {
-    // console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
-    // handle the case in which go back is pressed before card goes outOfFrame
-    // currentIndex >= idx && childRefs[idx].current.restoreCard();
-    // TODO: when quickly swipe and restore multiple times the same card,
-    // it happens multiple outOfFrame events are queued and the card disappear
-    // during latest swipes. Only the last outOfFrame event should be considered valid
-  };
 
   const swipe = async (dir) => {
-    // debugger;
-    // debugger;
+    if (dir == "right") {
+      addMyList(db.data[currentIndex].id); //マイリストに追加
+    }
+
     if (canSwipe && currentIndex < db.data.length) {
-      // debugger;
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
   };
@@ -158,7 +174,12 @@ function Swipe() {
               <TinderCard
                 ref={childRefs[index]}
                 key={character.id}
-                onSwipe={(dir) => swiped(dir, character.name, index)}
+                onSwipe={(dir) => {
+                  swiped(dir, character.name, index);
+                  if (dir == "right") {
+                    addMyList(db.data[index].id); //マイリストに追加
+                  }
+                }}
                 onCardLeftScreen={() => {
                   outOfFrame(character.name, index);
                 }}
@@ -190,7 +211,6 @@ function Swipe() {
           <button
             className="shadow-lg lg:py-5 py-2 rounded-md button"
             onClick={() => {
-              // console.log(db.data[currentIndex].id);
               localStorage.setItem("recipeId", db.data[currentIndex].id);
               navigate("/detail");
             }}
@@ -200,7 +220,6 @@ function Swipe() {
           <button
             className="shadow-lg lg:py-5 py-2 rounded-md button"
             onClick={() => {
-              addMyList(db.data[currentIndex].id);
               swipe("right");
             }}
           >
